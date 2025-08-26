@@ -1,644 +1,674 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Programação de Obras Norte Tech</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        :root {
-            --primary-color: #1e90ff;
-            --secondary-color: #0E1117;
-            --accent-color: #ff6b6b;
-            --text-color: #f0f6fc;
-            --table-header: #161b22;
-            --table-row: #21262d;
-            --table-alt-row: #242c37;
-            --filter-bg: #161b22;
-            --border-color: #30363d;
-            --sidebar-bg: #0A0D14;
-            --sidebar-width: 280px;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 0;
-            display: flex;
-            min-height: 100vh;
-        }
-        
-        /* Sidebar estilo DeepSeek */
+      :root {
+        --primary-color: #1e90ff;
+        --secondary-color: #0e1117;
+        --accent-color: #ff6b6b;
+        --text-color: #f0f6fc;
+        --table-header: #161b22;
+        --table-row: #21262d;
+        --table-alt-row: #242c37;
+        --filter-bg: #161b22;
+        --border-color: #30363d;
+        --sidebar-bg: #0a0d14;
+        --sidebar-width: 280px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        padding: 0;
+        display: flex;
+        min-height: 100vh;
+      }
+
+      /* Sidebar estilo DeepSeek */
+      .sidebar {
+        width: var(--sidebar-width);
+        background-color: var(--sidebar-bg);
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        z-index: 1000;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+        overflow-y: auto;
+      }
+
+      .sidebar-header {
+        padding: 0 20px 20px;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 20px;
+      }
+
+      .sidebar-logo {
+        width: 160px;
+        height: auto;
+        margin-bottom: -55px;
+        margin-top: -91px;
+      }
+
+      .sidebar-title {
+        font-size: 1.2rem;
+        color: var(--primary-color);
+        font-weight: bold;
+      }
+
+      .sidebar-menu {
+        flex: 1;
+      }
+
+      .menu-item {
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        color: #e2c529;
+        text-decoration: none;
+        transition: all 0.3s;
+        border-left: 4px solid transparent;
+      }
+
+      .menu-item:hover {
+        background-color: rgba(30, 144, 255, 0.1);
+        border-left-color: var(--primary-color);
+      }
+
+      .menu-item.active {
+        background-color: rgba(30, 144, 255, 0.2);
+        border-left-color: var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .menu-item i {
+        margin-right: 15px;
+        font-size: 1.2rem;
+        width: 24px;
+        text-align: center;
+      }
+
+      .menu-text {
+        flex: 1;
+      }
+
+      .sidebar-footer {
+        padding: 20px;
+        border-top: 1px solid var(--border-color);
+        font-size: 0.9rem;
+        color: #7f8c8d;
+      }
+
+      .main-content {
+        flex: 1;
+        margin-left: var(--sidebar-width);
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      header {
+        background: linear-gradient(135deg, #0e1117 0%, #1a1f29 100%);
+        padding: 30px 0;
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 2px solid var(--primary-color);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        border-radius: 10px;
+      }
+
+      .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex: 1;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        margin-left: 117px;
+        color: #e2c529;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .logo {
+        width: 180px;
+        height: auto;
+        margin-top: -79px;
+        margin-bottom: 0px;
+      }
+
+      .subtitle {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        max-width: 800px;
+        margin: 0;
+        margin-left: 114px;
+      }
+
+      .current-date {
+        font-size: 1.1rem;
+        margin-top: 15px;
+        color: #e2c529;
+        font-weight: bold;
+        margin-left: 108px;
+      }
+
+      .filters-section {
+        background-color: var(--filter-bg);
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border: 1px solid var(--border-color);
+      }
+
+      .filters-title {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+      }
+
+      .filters-title i {
+        margin-right: 10px;
+      }
+
+      .filter-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+
+      .filter-item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: var(--text-color);
+        font-size: 0.9rem;
+      }
+
+      select,
+      input {
+        padding: 12px;
+        background-color: var(--table-row);
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: all 0.3s;
+      }
+
+      select:focus,
+      input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.2);
+      }
+
+      .filter-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+      }
+
+      .export-buttons {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+        justify-content: flex-end;
+      }
+
+      button {
+        background: linear-gradient(to right, var(--primary-color), #4a86e8);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      button i {
+        margin-right: 8px;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .export-btn.png {
+        background: linear-gradient(to right, #27ae60, #2ecc71);
+      }
+
+      .export-btn.jpeg {
+        background: linear-gradient(to right, #3498db, #2980b9);
+      }
+
+      #reset-filters {
+        background: linear-gradient(to right, #e74c3c, #c0392b);
+      }
+
+      .table-container {
+        background-color: var(--filter-bg);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        margin-bottom: 30px;
+        border: 1px solid var(--border-color);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 16px;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      th {
+        background-color: var(--table-header);
+        color: var(--primary-color);
+        position: sticky;
+        top: 0;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+      }
+
+      tr {
+        background-color: var(--table-row);
+      }
+
+      tr:nth-child(even) {
+        background-color: var(--table-alt-row);
+      }
+
+      tr:hover {
+        background-color: #2a3342;
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: bold;
+        text-align: center;
+        min-width: 120px;
+      }
+
+      .status-active {
+        background-color: #ffbd09;
+        color: white;
+      }
+
+      .status-pending {
+        background-color: #0718ff;
+        color: white;
+      }
+
+      .status-completed {
+        background-color: #00ff15;
+        color: white;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 40px;
+        color: #7f8c8d;
+        font-size: 0.9rem;
+        padding: 20px;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 40px;
+        color: #7f8c8d;
+        font-size: 1.1rem;
+      }
+
+      .no-results i {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+      }
+
+      .loading {
+        text-align: center;
+        padding: 30px;
+        color: var(--primary-color);
+      }
+
+      .menu-toggle {
+        display: none;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1100;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      @media (max-width: 1024px) {
         .sidebar {
-            width: var(--sidebar-width);
-            background-color: var(--sidebar-bg);
-            height: 100vh;
-            position: fixed;
-            left: 0;
-            top: 0;
-            padding: 20px 0;
-            display: flex;
-            flex-direction: column;
-            z-index: 1000;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-            overflow-y: auto;
+          transform: translateX(-100%);
+          width: var(--sidebar-width);
         }
-        
-        .sidebar-header {
-            padding: 0 20px 20px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 20px;
+
+        .sidebar.expanded {
+          transform: translateX(0);
         }
-        
-        .sidebar-logo {
-            width: 160px;
-            height: auto;
-            margin-bottom: -55px;
-            margin-top: -91px;
-        }
-        
-        .sidebar-title {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-        
-        .sidebar-menu {
-            flex: 1;
-        }
-        
-        .menu-item {
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            color: #e2c529;
-            text-decoration: none;
-            transition: all 0.3s;
-            border-left: 4px solid transparent;
-        }
-        
-        .menu-item:hover {
-            background-color: rgba(30, 144, 255, 0.1);
-            border-left-color: var(--primary-color);
-        }
-        
-        .menu-item.active {
-            background-color: rgba(30, 144, 255, 0.2);
-            border-left-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-        
-        .menu-item i {
-            margin-right: 15px;
-            font-size: 1.2rem;
-            width: 24px;
-            text-align: center;
-        }
-        
-        .menu-text {
-            flex: 1;
-        }
-        
-        .sidebar-footer {
-            padding: 20px;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.9rem;
-            color: #7f8c8d;
-        }
-        
+
         .main-content {
-            flex: 1;
-            margin-left: var(--sidebar-width);
-            padding: 20px;
+          margin-left: 0;
         }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #0E1117 0%, #1a1f29 100%);
-            padding: 30px 0;
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--primary-color);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            border-radius: 10px;
-        }
-        
-        .header-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            flex: 1;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            margin-left: 117px;
-            color: #e2c529;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .logo {
-            width: 180px;
-            height: auto;
-            margin-top: -79px;
-            margin-bottom: 0px;
-        }
-        
-        .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 800px;
-            margin: 0;
-            margin-left: 114px;
-        }
-        
-        .current-date {
-            font-size: 1.1rem;
-            margin-top: 15px;
-            color: #e2c529;
-            font-weight: bold;
-            margin-left: 108px;
-        }
-        
-        .filters-section {
-            background-color: var(--filter-bg);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            border: 1px solid var(--border-color);
-        }
-        
-        .filters-title {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-        }
-        
-        .filters-title i {
-            margin-right: 10px;
-        }
-        
-        .filter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .filter-item {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        label {
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: var(--text-color);
-            font-size: 0.9rem;
-        }
-        
-        select, input {
-            padding: 12px;
-            background-color: var(--table-row);
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-        
-        select:focus, input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.2);
-        }
-        
-        .filter-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 15px;
-        }
-        
-        .export-buttons {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            justify-content: flex-end;
-        }
-        
-        button {
-            background: linear-gradient(to right, var(--primary-color), #4a86e8);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        button i {
-            margin-right: 8px;
-        }
-        
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        
-        .export-btn.png {
-            background: linear-gradient(to right, #27ae60, #2ecc71);
-        }
-        
-        .export-btn.jpeg {
-            background: linear-gradient(to right, #3498db, #2980b9);
-        }
-        
-        #reset-filters {
-            background: linear-gradient(to right, #e74c3c, #c0392b);
-        }
-        
-        .table-container {
-            background-color: var(--filter-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            margin-bottom: 30px;
-            border: 1px solid var(--border-color);
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        th, td {
-            padding: 16px;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        th {
-            background-color: var(--table-header);
-            color: var(--primary-color);
-            position: sticky;
-            top: 0;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
-        
-        tr {
-            background-color: var(--table-row);
-        }
-        
-        tr:nth-child(even) {
-            background-color: var(--table-alt-row);
-        }
-        
-        tr:hover {
-            background-color: #2a3342;
-        }
-        
-        .status-badge {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            text-align: center;
-            min-width: 120px;
-        }
-        
-        .status-active {
-            background-color: #2ecc71;
-            color: white;
-        }
-        
-        .status-pending {
-            background-color: #f39c12;
-            color: white;
-        }
-        
-        .status-completed {
-            background-color: #95a5a6;
-            color: white;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            padding: 20px;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .no-results {
-            text-align: center;
-            padding: 40px;
-            color: #7f8c8d;
-            font-size: 1.1rem;
-        }
-        
-        .no-results i {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 30px;
-            color: var(--primary-color);
-        }
-        
+
         .menu-toggle {
-            display: none;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1100;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+          display: block;
         }
-        
-        @media (max-width: 1024px) {
-            .sidebar {
-                transform: translateX(-100%);
-                width: var(--sidebar-width);
-            }
-            
-            .sidebar.expanded {
-                transform: translateX(0);
-            }
-            
-            .main-content {
-                margin-left: 0;
-            }
-            
-            .menu-toggle {
-                display: block;
-            }
+      }
+
+      @media (max-width: 768px) {
+        th,
+        td {
+          padding: 12px 10px;
+          font-size: 0.9rem;
         }
-        
-        @media (max-width: 768px) {
-            th, td {
-                padding: 12px 10px;
-                font-size: 0.9rem;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            header {
-                flex-direction: column;
-                text-align: center;
-                padding: 20px;
-            }
-            
-            .header-content {
-                align-items: center;
-                text-align: center;
-                margin-bottom: 20px;
-            }
-            
-            .export-buttons {
-                flex-direction: column;
-            }
-            
-            .filter-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .filter-actions {
-                flex-direction: column;
-            }
+
+        h1 {
+          font-size: 2rem;
         }
+
+        header {
+          flex-direction: column;
+          text-align: center;
+          padding: 20px;
+        }
+
+        .header-content {
+          align-items: center;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
+        .export-buttons {
+          flex-direction: column;
+        }
+
+        .filter-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .filter-actions {
+          flex-direction: column;
+        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <button class="menu-toggle" id="menu-toggle">
-        <i class="fas fa-bars"></i>
+      <i class="fas fa-bars"></i>
     </button>
 
     <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <img src="NorteTech.png" alt="Norte Tech Logo" class="sidebar-logo">
-            <div class="sidebar-title">Painel de Controle</div>
-        </div>
-        
-        <nav class="sidebar-menu">
-            <a href="#" class="menu-item active">
-                <i class="fas fa-home"></i>
-                <span class="menu-text">Visão Geral</span>
-            </a>
-            <a href="#" class="menu-item">
-                <i class="fas fa-hard-hat"></i>
-                <span class="menu-text">Programação</span>
-            </a>
-            <a href="https://dashboarddeobrasnortetechba.streamlit.app/" target="_blank" class="menu-item">
-                <i class="fas fa-chart-line"></i>
-                <span class="menu-text">Dashboard</span>
-            </a>
-            
-        </nav> 
-        <div class="sidebar-footer">
-            João Victor Santos &copy; 2025<br>
-            Versão 0.0.5
-        </div>
+      <div class="sidebar-header">
+        <img src="NorteTech.png" alt="Norte Tech Logo" class="sidebar-logo" />
+        <div class="sidebar-title">Painel de Controle</div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <a href="#" class="menu-item active">
+          <i class="fas fa-home"></i>
+          <span class="menu-text">Visão Geral</span>
+        </a>
+        <a href="#" class="menu-item">
+          <i class="fas fa-hard-hat"></i>
+          <span class="menu-text">Programação</span>
+        </a>
+        <a
+          href="https://dashboarddeobrasnortetechba.streamlit.app/"
+          target="_blank"
+          class="menu-item"
+        >
+          <i class="fas fa-chart-line"></i>
+          <span class="menu-text">Dashboard</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        João Victor Santos &copy; 2025<br />
+        Versão 0.0.5
+      </div>
     </aside>
 
     <main class="main-content">
-        <div class="container">
-            <header>
-                <div class="header-content">
-                    <h1><i class="fas fa-hard-hat"></i> PROGRAMAÇÃO DE OBRAS</h1>
-                    <p class="subtitle">Controle e acompanhamento de obras em tempo real</p>
-                    <div class="current-date" id="current-date">Data de hoje: </div>
-                </div>
-                <img src="NorteTech.png" alt="Norte Tech Logo" class="logo">
-            </header>
-            
-            <div class="export-buttons">
-                <button id="export-png" class="export-btn png"><i class="fas fa-download"></i> Exportar PNG</button>
-                <button id="export-jpeg" class="export-btn jpeg"><i class="fas fa-download"></i> Exportar JPEG</button>
-            </div>
-            
-            <!-- SEÇÃO DE FILTROS (AGORA VISÍVEL) -->
-            <section class="filters-section">
-                <div class="filters-title"><i class="fas fa-filter"></i> Filtros</div>
-                <div class="filter-grid">
-                    <div class="filter-item">
-                        <label for="date-filter">Filtrar por data:</label>
-                        <select id="date-filter">
-                            <option value="today">Obras de hoje</option>
-                            <option value="tomorrow">Obras de amanhã</option>
-                            <option value="week">Próximos 7 dias</option>
-                            <option value="month">Próximos 30 dias</option>
-                            <option value="all">Todas as obras</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filter-item">
-                        <label for="supervisor-filter">Supervisor:</label>
-                        <select id="supervisor-filter">
-                            <option value="all">Todos os supervisores</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filter-item">
-                        <label for="municipio-filter">Município:</label>
-                        <select id="municipio-filter">
-                            <option value="all">Todos os municípios</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filter-item">
-                        <label for="search">Pesquisar:</label>
-                        <input type="text" id="search" placeholder="Digite para buscar...">
-                    </div>
-                </div>
-                <div class="filter-actions">
-                    <button id="apply-filters"><i class="fas fa-check"></i> Aplicar Filtros</button>
-                    <button id="reset-filters"><i class="fas fa-times"></i> Limpar Filtros</button>
-                </div>
-            </section>
-            
-            <section class="table-container" id="table-to-export">
-                <table id="obras-table">
-                    <thead>
-                        <tr>
-                            <th>Obra</th>
-                            <th>Encarregado</th>
-                            <th>Supervisor</th>
-                            <th>Título</th>
-                            <th>Município</th>
-                            <th>Início</th>
-                            <th>Término</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-body">
-                        <tr>
-                            <td colspan="8">
-                                <div class="loading">
-                                    <i class="fas fa-spinner fa-spin"></i> Carregando dados...
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="no-results" id="no-results" style="display: none;">
-                    <i class="fas fa-inbox"></i>
-                    <p>Nenhuma obra encontrada com os filtros aplicados.</p>
-                </div>
-            </section>
-            
-            <footer>
-                <p>joaovctdev &copy; 2025 - Sistema de Gerenciamento de Obras</p>
-            </footer>
+      <div class="container">
+        <header>
+          <div class="header-content">
+            <h1><i class="fas fa-hard-hat"></i> PROGRAMAÇÃO DE OBRAS</h1>
+            <p class="subtitle">
+              Controle e acompanhamento de obras em tempo real
+            </p>
+            <div class="current-date" id="current-date">Data de hoje:</div>
+          </div>
+          <img src="NorteTech.png" alt="Norte Tech Logo" class="logo" />
+        </header>
+
+        <div class="export-buttons">
+          <button id="export-png" class="export-btn png">
+            <i class="fas fa-download"></i> Exportar PNG
+          </button>
+          <button id="export-jpeg" class="export-btn jpeg">
+            <i class="fas fa-download"></i> Exportar JPEG
+          </button>
         </div>
+
+        <!-- SEÇÃO DE FILTROS (AGORA VISÍVEL) -->
+        <section class="filters-section">
+          <div class="filters-title"><i class="fas fa-filter"></i> Filtros</div>
+          <div class="filter-grid">
+            <div class="filter-item">
+              <label for="date-filter">Filtrar por data:</label>
+              <select id="date-filter">
+                <option value="today">Obras de hoje</option>
+                <option value="tomorrow">Obras de amanhã</option>
+                <option value="week">Próximos 7 dias</option>
+                <option value="month">Próximos 30 dias</option>
+                <option value="all">Todas as obras</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <label for="supervisor-filter">Supervisor:</label>
+              <select id="supervisor-filter">
+                <option value="all">Todos os supervisores</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <label for="municipio-filter">Município:</label>
+              <select id="municipio-filter">
+                <option value="all">Todos os municípios</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <label for="search">Pesquisar:</label>
+              <input
+                type="text"
+                id="search"
+                placeholder="Digite para buscar..."
+              />
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button id="apply-filters">
+              <i class="fas fa-check"></i> Aplicar Filtros
+            </button>
+            <button id="reset-filters">
+              <i class="fas fa-times"></i> Limpar Filtros
+            </button>
+          </div>
+        </section>
+
+        <section class="table-container" id="table-to-export">
+          <table id="obras-table">
+            <thead>
+              <tr>
+                <th>Obra</th>
+                <th>Encarregado</th>
+                <th>Supervisor</th>
+                <th>Título</th>
+                <th>Município</th>
+                <th>Atividade do Dia</th>
+                <th>Critério</th>
+                <!-- Nova coluna de critério -->
+                <th>Início</th>
+                <th>Término</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              <tr>
+                <td colspan="10">
+                  <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> Carregando dados...
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="no-results" id="no-results" style="display: none">
+            <i class="fas fa-inbox"></i>
+            <p>Nenhuma obra encontrada com os filtros aplicados.</p>
+          </div>
+        </section>
+
+        <footer>
+          <p>joaovctdev &copy; 2025 - Sistema de Gerenciamento de Obras</p>
+        </footer>
+      </div>
     </main>
 
     <script>
-        // Variáveis globais
-        let obrasData = [];
+      // Variáveis globais
+      let obrasData = [];
+      const today = new Date();
+
+      // Formatar data para exibição
+      function formatDate(dateString) {
+        if (!dateString) return "-";
+
+        // Formato DD/MM/YYYY para Date object
+        const [day, month, year] = dateString.split("/");
+        const date = new Date(year, month - 1, day);
+        return date.toLocaleDateString("pt-BR");
+      }
+
+      // Converter string de data para objeto Date
+      function parseDate(dateString) {
+        if (!dateString) return null;
+
+        const [day, month, year] = dateString.split("/");
+        return new Date(year, month - 1, day);
+      }
+
+      // Calcular status com base nas datas
+      // Calcular status com base nas datas
+      function getStatus(startDate, endDate) {
+        if (!startDate || !endDate)
+          return { status: "pending", text: "Pendente" };
+
+        const start = parseDate(startDate);
+        const end = parseDate(endDate);
+
+        // Resetar horas para comparar apenas as datas
         const today = new Date();
-        
-        // Formatar data para exibição
-        function formatDate(dateString) {
-            if (!dateString) return '-';
-            
-            // Formato DD/MM/YYYY para Date object
-            const [day, month, year] = dateString.split('/');
-            const date = new Date(year, month - 1, day);
-            return date.toLocaleDateString('pt-BR');
+        today.setHours(0, 0, 0, 0);
+
+        // Ajustar as datas de início e término para comparar apenas a data (sem hora)
+        start.setHours(0, 0, 0, 0);
+        end.setHours(0, 0, 0, 0);
+
+        if (today < start) {
+          return { status: "pending", text: "Programada" };
+        } else if (today >= start && today <= end) {
+          return { status: "active", text: "Em Andamento" };
+        } else {
+          return { status: "completed", text: "Concluída" };
         }
-        
-        // Converter string de data para objeto Date
-        function parseDate(dateString) {
-            if (!dateString) return null;
-            
-            const [day, month, year] = dateString.split('/');
-            return new Date(year, month - 1, day);
-        }
-        
-        // Calcular status com base nas datas
-        function getStatus(startDate, endDate) {
-            if (!startDate || !endDate) return { status: 'pending', text: 'Pendente' };
-            
-            const start = parseDate(startDate);
-            const end = parseDate(endDate);
-            
-            // Resetar horas para comparar apenas as datas
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            
-            if (today < start) {
-                return { status: 'pending', text: 'Programada' };
-            } else if (today >= start && today <= end) {
-                return { status: 'active', text: 'Em Andamento' };
-            } else {
-                return { status: 'completed', text: 'Concluída' };
-            }
-        }
-        
-        // Carregar dados do arquivo JSON
-        async function loadData() {
-            try {
-                // Em um ambiente real, descomente a linha abaixo
-                const response = await fetch('bd.json');
-                obrasData = await response.json();
-                
-                // Dados de exemplo com datas variadas para testar os filtros
-                
-                
-                renderTable(obrasData);
-                populateFilters(obrasData);
-                
-                // Aplicar filtro inicial APÓS os dados serem carregados
-                applyFilters();
-            } catch (error) {
-                console.error('Erro ao carregar os dados:', error);
-                document.getElementById('table-body').innerHTML = `
+      }
+
+      // Carregar dados do arquivo JSON
+      async function loadData() {
+        try {
+          // Em um ambiente real, descomente a linha abaixo
+          const response = await fetch("bd.json");
+          obrasData = await response.json();
+
+          renderTable(obrasData);
+          populateFilters(obrasData);
+
+          // Aplicar filtro inicial APÓS os dados serem carregados
+          applyFilters();
+        } catch (error) {
+          console.error("Erro ao carregar os dados:", error);
+          document.getElementById("table-body").innerHTML = `
                     <tr>
-                        <td colspan="8">
+                        <td colspan="10">
                             <div class="no-results">
                                 <i class="fas fa-exclamation-triangle"></i>
                                 <p>Erro ao carregar os dados. Verifique o arquivo bd.json.</p>
@@ -646,224 +676,398 @@
                         </td>
                     </tr>
                 `;
-            }
         }
-        
-        // Funções auxiliares para datas
-        function formatDateForJSON(date) {
-            const day = String(date.getDate()).padStart(2, '0');
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const year = date.getFullYear();
-            return `${day}/${month}/${year}`;
+      }
+
+      // Funções auxiliares para datas
+      function formatDateForJSON(date) {
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+      }
+
+      function getTomorrowDate() {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        return tomorrow;
+      }
+
+      function getDateDaysFromToday(days) {
+        const date = new Date();
+        date.setDate(date.getDate() + days);
+        return date;
+      }
+
+      // Popular os filtros com dados dinâmicos
+      function populateFilters(data) {
+        const supervisorFilter = document.getElementById("supervisor-filter");
+        const municipioFilter = document.getElementById("municipio-filter");
+
+        const supervisors = [...new Set(data.map((item) => item.B))];
+        const municipios = [...new Set(data.map((item) => item.E))];
+
+        supervisors.forEach((supervisor) => {
+          const option = document.createElement("option");
+          option.value = supervisor;
+          option.textContent = supervisor;
+          supervisorFilter.appendChild(option);
+        });
+
+        municipios.forEach((municipio) => {
+          const option = document.createElement("option");
+          option.value = municipio;
+          option.textContent = municipio;
+          municipioFilter.appendChild(option);
+        });
+      }
+
+      // Função para editar atividade
+      function editActivity(index, obraId) {
+        const activityCell = document.getElementById(`activity-cell-${index}`);
+        const activityText = document.getElementById(`activity-text-${index}`);
+        const currentActivity = activityText.textContent;
+
+        // Criar input para edição
+        activityCell.innerHTML = `
+                <input type="text" id="activity-input-${index}" class="activity-input" value="${currentActivity}" placeholder="">
+                <button onclick="saveActivity(${index}, '${obraId}')" class="activity-edit-btn"><i class="fas fa-check"></i></button>
+                <button onclick="cancelEdit(${index}, '${currentActivity}')" class="activity-edit-btn"><i class="fas fa-times"></i></button>
+            `;
+
+        // Focar no input e adicionar evento para desaparecer com o placeholder ao digitar
+        const inputElement = document.getElementById(`activity-input-${index}`);
+        inputElement.focus();
+
+        inputElement.addEventListener("input", function () {
+          this.removeAttribute("placeholder");
+        });
+      }
+
+      // Função para salvar atividade
+      function saveActivity(index, obraId) {
+        const newActivity = document.getElementById(
+          `activity-input-${index}`
+        ).value;
+
+        // Atualizar os dados
+        const obraIndex = obrasData.findIndex((item) => item.id === obraId);
+        if (obraIndex !== -1) {
+          obrasData[obraIndex].atividade = newActivity;
         }
-        
-        function getTomorrowDate() {
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            return tomorrow;
+
+        // Atualizar a exibição (sem o botão de edição)
+        updateActivityDisplay(index, obraId, newActivity, false);
+
+        // Aqui você pode adicionar código para salvar no servidor se necessário
+        console.log(`Atividade salva para obra ${obraId}:`, newActivity);
+      }
+
+      // Função para cancelar edição
+      function cancelEdit(index, originalActivity) {
+        const obraId = obrasData[index].id;
+        updateActivityDisplay(index, obraId, originalActivity, true);
+      }
+
+      // Atualizar a exibição da atividade
+      function updateActivityDisplay(
+        index,
+        obraId,
+        activity,
+        showEditButton = true
+      ) {
+        const editButtonHtml = showEditButton
+          ? `<button onclick="editActivity(${index}, '${obraId}')" class="activity-edit-btn">
+                    <i class="fas fa-edit"></i>
+                </button>`
+          : "";
+
+        document.getElementById(`activity-cell-${index}`).innerHTML = `
+                <div class="activity-text" id="activity-text-${index}" onclick="editActivity(${index}, '${obraId}')">
+                    ${activity || '<div class="placeholder-text"></div>'}
+                </div>
+                ${editButtonHtml}
+            `;
+      }
+
+      // Renderizar a tabela com os dados
+      function renderTable(data) {
+        const tableBody = document.getElementById("table-body");
+        const noResults = document.getElementById("no-results");
+
+        tableBody.innerHTML = "";
+
+        if (data.length === 0) {
+          noResults.style.display = "block";
+          return;
         }
-        
-        function getDateDaysFromToday(days) {
-            const date = new Date();
-            date.setDate(date.getDate() + days);
-            return date;
-        }
-        
-        // Popular os filtros com dados dinâmicos
-        function populateFilters(data) {
-            const supervisorFilter = document.getElementById('supervisor-filter');
-            const municipioFilter = document.getElementById('municipio-filter');
-            
-            const supervisors = [...new Set(data.map(item => item.B))];
-            const municipios = [...new Set(data.map(item => item.E))];
-            
-            supervisors.forEach(supervisor => {
-                const option = document.createElement('option');
-                option.value = supervisor;
-                option.textContent = supervisor;
-                supervisorFilter.appendChild(option);
-            });
-            
-            municipios.forEach(municipio => {
-                const option = document.createElement('option');
-                option.value = municipio;
-                option.textContent = municipio;
-                municipioFilter.appendChild(option);
-            });
-        }
-        
-        // Renderizar a tabela com os dados
-        function renderTable(data) {
-            const tableBody = document.getElementById('table-body');
-            const noResults = document.getElementById('no-results');
-            
-            tableBody.innerHTML = '';
-            
-            if (data.length === 0) {
-                noResults.style.display = 'block';
-                return;
-            }
-            
-            noResults.style.display = 'none';
-            
-            data.forEach(item => {
-                const status = getStatus(item.H, item.I);
-                
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${item.C || '-'}</td>
-                    <td>${item.A || '-'}</td>
-                    <td>${item.B || '-'}</td>
-                    <td>${item.D || '-'}</td>
-                    <td>${item.E || '-'}</td>
-                    <td>${formatDate(item.H)}</td>
-                    <td>${formatDate(item.I)}</td>
-                    <td><span class="status-badge status-${status.status}">${status.text}</span></td>
+
+        noResults.style.display = "none";
+
+        data.forEach((item, index) => {
+          const status = getStatus(item.I, item.J);
+
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                    <td>${item.C || "-"}</td>
+                    <td>${item.A || "-"}</td>
+                    <td>${item.B || "-"}</td>
+                    <td>${item.D || "-"}</td>
+                    <td>${item.E || "-"}</td>
+                    <td class="activity-cell" id="activity-cell-${index}">
+                        <div class="activity-text" id="activity-text-${index}" onclick="editActivity(${index}, '${
+            item.id
+          }')">
+                            ${
+                              item.atividade ||
+                              '<div class="placeholder-text"></div>'
+                            }
+                        </div>
+                        <button onclick="editActivity(${index}, '${
+            item.id
+          }')" class="activity-edit-btn">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </td>
+                    <td class="criterio-cell">${item.F || "-"}</td>
+                    <td class="date-cell">${formatDate(item.I)}</td>
+                    <td class="date-cell">${formatDate(item.J)}</td>
+                    <td><span class="status-badge status-${status.status}">${
+            status.text
+          }</span></td>
                 `;
-                tableBody.appendChild(row);
-            });
+          tableBody.appendChild(row);
+        });
+      }
+
+      // Aplicar filtros
+      function applyFilters() {
+        // Verificar se os dados já foram carregados
+        if (obrasData.length === 0) return;
+
+        const dateFilter = document.getElementById("date-filter").value;
+        const supervisorFilter =
+          document.getElementById("supervisor-filter").value;
+        const municipioFilter =
+          document.getElementById("municipio-filter").value;
+        const searchText = document
+          .getElementById("search")
+          .value.toLowerCase();
+
+        let filteredData = obrasData;
+
+        // Filtrar por supervisor
+        if (supervisorFilter !== "all") {
+          filteredData = filteredData.filter(
+            (item) => item.B === supervisorFilter
+          );
         }
-        
-        // Aplicar filtros
-        function applyFilters() {
-            // Verificar se os dados já foram carregados
-            if (obrasData.length === 0) return;
-            
-            const dateFilter = document.getElementById('date-filter').value;
-            const supervisorFilter = document.getElementById('supervisor-filter').value;
-            const municipioFilter = document.getElementById('municipio-filter').value;
-            const searchText = document.getElementById('search').value.toLowerCase();
-            
-            let filteredData = obrasData;
-            
-            // Filtrar por supervisor
-            if (supervisorFilter !== 'all') {
-                filteredData = filteredData.filter(item => item.B === supervisorFilter);
-            }
-            
-            // Filtrar por município
-            if (municipioFilter !== 'all') {
-                filteredData = filteredData.filter(item => item.E === municipioFilter);
-            }
-            
-            // Filtrar por texto de pesquisa
-            if (searchText) {
-                filteredData = filteredData.filter(item => 
-                    Object.values(item).some(value => 
-                        value && value.toString().toLowerCase().includes(searchText)
-                    )
-                );
-            }
-            
-            // Filtrar por data - CORREÇÃO PRINCIPAL
-            if (dateFilter !== 'all') {
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
-                
-                filteredData = filteredData.filter(item => {
-                    if (!item.H || !item.I) return false;
-                    
-                    const startDate = parseDate(item.H);
-                    const endDate = parseDate(item.I);
-                    
-                    if (!startDate || !endDate) return false;
-                    
-                    // Resetar horas para comparar apenas as datas
-                    startDate.setHours(0, 0, 0, 0);
-                    endDate.setHours(0, 0, 0, 0);
-                    
-                    switch(dateFilter) {
-                        case 'today':
-                            // Obra que está acontecendo hoje (início <= hoje <= término)
-                            return startDate <= today && endDate >= today;
-                        case 'tomorrow':
-                            // Obra que acontecerá amanhã (início <= amanhã <= término)
-                            const tomorrow = new Date(today);
-                            tomorrow.setDate(tomorrow.getDate() + 1);
-                            return startDate <= tomorrow && endDate >= tomorrow;
-                        case 'week':
-                            // Obra que acontecerá nos próximos 7 dias
-                            const nextWeek = new Date(today);
-                            nextWeek.setDate(nextWeek.getDate() + 7);
-                            return startDate <= nextWeek && endDate >= today;
-                        case 'month':
-                            // Obra que acontecerá nos próximos 30 dias
-                            const nextMonth = new Date(today);
-                            nextMonth.setDate(nextMonth.getDate() + 30);
-                            return startDate <= nextMonth && endDate >= today;
-                        default:
-                            return true;
-                    }
-                });
-            }
-            
-            renderTable(filteredData);
+
+        // Filtrar por município
+        if (municipioFilter !== "all") {
+          filteredData = filteredData.filter(
+            (item) => item.E === municipioFilter
+          );
         }
-        
-        // Exportar tabela para PNG ou JPEG
-        function exportTable(format) {
-            // Criar um elemento temporário para exportação
-            const exportElement = document.createElement('div');
-            exportElement.style.backgroundColor = '#0E1117';
-            exportElement.style.padding = '20px';
-            exportElement.style.borderRadius = '10px';
-            
-            // Clonar o header
-            const headerClone = document.querySelector('header').cloneNode(true);
-            exportElement.appendChild(headerClone);
-            
-            // Clonar a tabela
-            const tableClone = document.getElementById('table-to-export').cloneNode(true);
-            exportElement.appendChild(tableClone);
-            
-            // Adicionar ao documento temporariamente
-            exportElement.style.position = 'fixed';
-            exportElement.style.left = '-9999px';
-            document.body.appendChild(exportElement);
-            
-            // Capturar como imagem
-            html2canvas(exportElement, {
-                scale: 2,
-                backgroundColor: '#0E1117'
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `programacao-obras-nortetech.${format}`;
-                link.href = format === 'png' ? canvas.toDataURL('image/png') : canvas.toDataURL('image/jpeg', 0.9);
-                link.click();
-                
-                // Remover o elemento temporário
-                document.body.removeChild(exportElement);
-            });
+
+        // Filtrar por texto de pesquisa
+        if (searchText) {
+          filteredData = filteredData.filter((item) =>
+            Object.values(item).some(
+              (value) =>
+                value && value.toString().toLowerCase().includes(searchText)
+            )
+          );
         }
-        
-        // Inicializar a aplicação
-        function init() {
-            // Atualizar data atual no header
-            document.getElementById('current-date').textContent += today.toLocaleDateString('pt-BR');
-            
-            // Carregar dados
-            loadData();
-            
-            // Adicionar event listeners para exportação
-            document.getElementById('export-png').addEventListener('click', () => exportTable('png'));
-            document.getElementById('export-jpeg').addEventListener('click', () => exportTable('jpeg'));
-            
-            // Adicionar event listeners aos filtros
-            document.getElementById('date-filter').addEventListener('change', applyFilters);
-            document.getElementById('supervisor-filter').addEventListener('change', applyFilters);
-            document.getElementById('municipio-filter').addEventListener('change', applyFilters);
-            document.getElementById('search').addEventListener('input', applyFilters);
-            document.getElementById('reset-filters').addEventListener('click', () => {
-                document.getElementById('date-filter').value = 'today';
-                document.getElementById('supervisor-filter').value = 'all';
-                document.getElementById('municipio-filter').value = 'all';
-                document.getElementById('search').value = '';
-                applyFilters();
-            });
+
+        // Filtrar por data
+        if (dateFilter !== "all") {
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+
+          filteredData = filteredData.filter((item) => {
+            if (!item.I || !item.J) return false;
+
+            const startDate = parseDate(item.I);
+            const endDate = parseDate(item.J);
+
+            if (!startDate || !endDate) return false;
+
+            // Resetar horas para comparar apenas as datas
+            startDate.setHours(0, 0, 0, 0);
+            endDate.setHours(0, 0, 0, 0);
+
+            switch (dateFilter) {
+              case "today":
+                // Obra que está acontecendo hoje (início <= hoje <= término)
+                return startDate <= today && endDate >= today;
+              case "tomorrow":
+                // Obra que acontecerá amanhã (início <= amanhã <= término)
+                const tomorrow = new Date(today);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                return startDate <= tomorrow && endDate >= tomorrow;
+              case "week":
+                // Obra que acontecerá nos próximos 7 dias
+                const nextWeek = new Date(today);
+                nextWeek.setDate(nextWeek.getDate() + 7);
+                return startDate <= nextWeek && endDate >= today;
+              case "month":
+                // Obra que acontecerá nos próximos 30 dias
+                const nextMonth = new Date(today);
+                nextMonth.setDate(nextMonth.getDate() + 30);
+                return startDate <= nextMonth && endDate >= today;
+              default:
+                return true;
+            }
+          });
         }
-        
-        // Iniciar quando o documento estiver carregado
-        document.addEventListener('DOMContentLoaded', init);
+
+        renderTable(filteredData);
+      }
+
+      // Exportar tabela para PNG ou JPEG
+      function exportTable(format) {
+        // Primeiro, remover todos os botões de edição e datas da visualização atual
+        document.querySelectorAll(".activity-edit-btn").forEach((btn) => {
+          btn.style.display = "none";
+        });
+
+        document.querySelectorAll(".date-cell").forEach((cell) => {
+          cell.style.display = "none";
+        });
+
+        // Ocultar cabeçalhos das colunas de data
+        const tableHeaders = document.querySelectorAll("th");
+        tableHeaders.forEach((header, index) => {
+          if (
+            header.textContent === "Início" ||
+            header.textContent === "Término"
+          ) {
+            header.style.display = "none";
+          }
+        });
+
+        // Criar um elemento temporário para exportação
+        const exportElement = document.createElement("div");
+        exportElement.style.backgroundColor = "#0E1117";
+        exportElement.style.padding = "20px";
+        exportElement.style.borderRadius = "10px";
+
+        // Clonar o header
+        const headerClone = document.querySelector("header").cloneNode(true);
+        exportElement.appendChild(headerClone);
+
+        // Clonar a tabela
+        const tableClone = document
+          .getElementById("table-to-export")
+          .cloneNode(true);
+
+        // Remover botões de edição e datas do clone também
+        tableClone.querySelectorAll(".activity-edit-btn").forEach((btn) => {
+          btn.style.display = "none";
+        });
+
+        tableClone.querySelectorAll(".date-cell").forEach((cell) => {
+          cell.style.display = "none";
+        });
+
+        // Ocultar cabeçalhos das colunas de data no clone
+        tableClone.querySelectorAll("th").forEach((header, index) => {
+          if (
+            header.textContent === "Início" ||
+            header.textContent === "Término"
+          ) {
+            header.style.display = "none";
+          }
+        });
+
+        exportElement.appendChild(tableClone);
+
+        // Adicionar ao documento temporariamente
+        exportElement.style.position = "fixed";
+        exportElement.style.left = "-9999px";
+        document.body.appendChild(exportElement);
+
+        // Capturar como imagem
+        html2canvas(exportElement, {
+          scale: 2,
+          backgroundColor: "#0E1117",
+        }).then((canvas) => {
+          const link = document.createElement("a");
+          link.download = `programacao-obras-nortetech.${format}`;
+          link.href =
+            format === "png"
+              ? canvas.toDataURL("image/png")
+              : canvas.toDataURL("image/jpeg", 0.9);
+          link.click();
+
+          // Remover o elemento temporário
+          document.body.removeChild(exportElement);
+
+          // Restaurar os botões de edição e datas na visualização
+          document.querySelectorAll(".activity-edit-btn").forEach((btn) => {
+            btn.style.display = "";
+          });
+
+          document.querySelectorAll(".date-cell").forEach((cell) => {
+            cell.style.display = "";
+          });
+
+          // Restaurar cabeçalhos das colunas de data
+          tableHeaders.forEach((header, index) => {
+            if (
+              header.textContent === "Início" ||
+              header.textContent === "Término"
+            ) {
+              header.style.display = "";
+            }
+          });
+        });
+      }
+
+      // Inicializar a aplicação
+      function init() {
+        // Atualizar data atual no header
+        document.getElementById("current-date").textContent +=
+          today.toLocaleDateString("pt-BR");
+
+        // Carregar dados
+        loadData();
+
+        // Adicionar event listeners para exportação
+        document
+          .getElementById("export-png")
+          .addEventListener("click", () => exportTable("png"));
+        document
+          .getElementById("export-jpeg")
+          .addEventListener("click", () => exportTable("jpeg"));
+
+        // Adicionar event listeners aos filtros
+        document
+          .getElementById("date-filter")
+          .addEventListener("change", applyFilters);
+        document
+          .getElementById("supervisor-filter")
+          .addEventListener("change", applyFilters);
+        document
+          .getElementById("municipio-filter")
+          .addEventListener("change", applyFilters);
+        document
+          .getElementById("search")
+          .addEventListener("input", applyFilters);
+        document
+          .getElementById("reset-filters")
+          .addEventListener("click", () => {
+            document.getElementById("date-filter").value = "today";
+            document.getElementById("supervisor-filter").value = "all";
+            document.getElementById("municipio-filter").value = "all";
+            document.getElementById("search").value = "";
+            applyFilters();
+          });
+      }
+
+      // Iniciar quando o documento estiver carregado
+      document.addEventListener("DOMContentLoaded", init);
     </script>
-</body>
+  </body>
 </html>
