@@ -55,6 +55,68 @@
         box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
         overflow-y: auto;
       }
+      .sidebar-toggle {
+        position: absolute;
+        top: 20px;
+        right: 10px;
+        background: transparent;
+        border: none;
+        color: #64FFDA;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 4px;
+        transition: all 0.3s;
+      }
+      .sidebar-toggle:hover {
+        background: rgba(100, 255, 218, 0.1);
+      }
+      /* Estilo para sidebar recolhida */
+      .sidebar.collapsed {
+        width: 70px;
+      }
+      .sidebar.collapsed ~ .main-content {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+      }
+      .sidebar.collapsed .sidebar-title,
+      .sidebar.collapsed .menu-text,
+      .sidebar.collapsed .sidebar-footer {
+        display: none;
+      }
+      
+      .sidebar.collapsed .sidebar-header {
+        padding: 15px 5px;
+        text-align: center;
+      }
+      
+      .sidebar.collapsed .sidebar-logo {
+        max-width: 40px;
+        margin: 0 auto;
+      }
+      
+      .sidebar.collapsed .menu-item {
+        justify-content: center;
+        padding: 12px 5px;
+      }
+      
+      .sidebar.collapsed .menu-item i {
+        margin-right: 0;
+        font-size: 18px;
+      }
+      
+      .sidebar.collapsed .sidebar-toggle i {
+        transform: rotate(180deg);
+      }
+      
+      /* Transição suave */
+      .sidebar {
+        transition: width 0.3s ease;
+      }
+      
+      .sidebar-header {
+        position: relative;
+        transition: all 0.3s ease;
+      }
 
       .sidebar-header {
         padding: 0 20px 20px;
@@ -182,7 +244,111 @@
         font-weight: bold;
         margin-left: 108px;
       }
+      .add-row-section {
+        background-color: #1E2535;
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
 
+      .add-row-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #e2c529;
+      }
+
+      .horizontal-form {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 10px;
+        margin-bottom: 0;
+        align-items: end;
+        overflow-x: auto;
+        padding-bottom: 5px;
+      }
+
+      .horizontal-form::-webkit-scrollbar {
+        height: 5px;
+      }
+
+      .horizontal-form::-webkit-scrollbar-track {
+        background: #0E1117;
+        border-radius: 10px;
+      }
+
+      .horizontal-form::-webkit-scrollbar-thumb {
+        background: #e2c529;
+        border-radius: 10px;
+      }
+
+      .form-item {
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 auto;
+        min-width: 100px;
+      }
+
+      .form-item label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #8892B0;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .form-item input, .form-item select {
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #2A3245;
+        background-color: #0E1117;
+        color: white;
+        font-size: 12px;
+        min-width: 0;
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 5px;
+      }
+
+      .form-actions button {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+
+      #add-row-btn {
+        background-color: #e2c529;
+        color: #0E1117;
+      }
+
+      #clear-form-btn {
+        background-color: #e2c529;
+        color: white;
+      }
+
+      /* Responsividade para dispositivos menores */
+      @media (max-width: 1200px) {
+        .form-item {
+          min-width: 90px;
+        }
+        
+        .form-item input, .form-item select {
+          padding: 6px;
+          font-size: 11px;
+        }
+        
+        .form-actions button {
+          padding: 6px 10px;
+        }
+      }
       .filters-section {
         background-color: var(--filter-bg);
         padding: 20px;
@@ -459,40 +625,44 @@
       }
     </style>
   </head>
-  <body>
+<body>
+<body>
     <button class="menu-toggle" id="menu-toggle">
-      <i class="fas fa-bars"></i>
+  <i class="fas fa-bars"></i>
+</button>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="NorteTech.png" alt="Norte Tech Logo" class="sidebar-logo" />
+    <div class="sidebar-title">Painel de Controle</div>
+    <button class="sidebar-toggle" id="sidebar-toggle">
+      <i class="fas fa-chevron-left"></i>
     </button>
+  </div>
 
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <img src="NorteTech.png" alt="Norte Tech Logo" class="sidebar-logo" />
-        <div class="sidebar-title">Painel de Controle</div>
-      </div>
-
-      <nav class="sidebar-menu">
-        <a href="#" class="menu-item active">
-          <i class="fas fa-home"></i>
-          <span class="menu-text">Visão Geral</span>
-        </a>
-        <a href="#" class="menu-item">
-          <i class="fas fa-hard-hat"></i>
-          <span class="menu-text">Programação</span>
-        </a>
-        <a
-          href="https://dashboarddeobrasnortetechba.streamlit.app/"
-          target="_blank"
-          class="menu-item"
-        >
-          <i class="fas fa-chart-line"></i>
-          <span class="menu-text">Dashboard</span>
-        </a>
-      </nav>
-      <div class="sidebar-footer">
-        João Victor Santos &copy; 2025<br />
-        Versão 0.0.5
-      </div>
-    </aside>
+  <nav class="sidebar-menu">
+    <a href="#" class="menu-item active">
+      <i class="fas fa-home"></i>
+      <span class="menu-text">Visão Geral</span>
+    </a>
+    <a href="#" class="menu-item">
+      <i class="fas fa-hard-hat"></i>
+      <span class="menu-text">Programação</span>
+    </a>
+    <a
+      href="https://dashboarddeobrasnortetechba.streamlit.app/"
+      target="_blank"
+      class="menu-item"
+    >
+      <i class="fas fa-chart-line"></i>
+      <span class="menu-text">Dashboard</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    João Victor Santos &copy; 2025<br />
+    Versão 0.0.5
+  </div>
+</aside>
 
     <main class="main-content">
       <div class="container">
@@ -500,7 +670,7 @@
           <div class="header-content">
             <h1><i class="fas fa-hard-hat"></i> PROGRAMAÇÃO DE OBRAS</h1>
             <p class="subtitle">
-              Controle e acompanhamento de obras em tempo real
+              Controle e acompanhamento de Obras - Setembro
             </p>
             <div class="current-date" id="current-date">Data de hoje:</div>
           </div>
@@ -516,7 +686,61 @@
           </button>
         </div>
 
-        <!-- SEÇÃO DE FILTROS (AGORA VISÍVEL) -->
+        <!-- SEÇÃO PARA ADICIONAR NOVAS LINHAS - FORMULÁRIO HORIZONTAL -->
+        <section class="add-row-section">
+  <div class="add-row-title"><i class="fas fa-plus-circle"></i> Adicionar Nova Obra</div>
+  <div class="horizontal-form">
+    <div class="form-item">
+      <label for="new-obra">Código *</label>
+      <input type="text" id="new-obra" placeholder="Código" title="Código da obra">
+    </div>
+    <div class="form-item">
+      <label for="new-encarregado">Encarregado</label>
+      <input type="text" id="new-encarregado" placeholder="Encarregado" title="Nome do encarregado">
+    </div>
+    <div class="form-item">
+      <label for="new-supervisor">Supervisor</label>
+      <input type="text" id="new-supervisor" placeholder="Supervisor" title="Nome do supervisor">
+    </div>
+    <div class="form-item">
+      <label for="new-titulo">Título</label>
+      <input type="text" id="new-titulo" placeholder="Título" title="Título da obra">
+    </div>
+    <div class="form-item">
+      <label for="new-municipio">Município</label>
+      <input type="text" id="new-municipio" placeholder="Município" title="Município">
+    </div>
+    <div class="form-item">
+      <label for="new-criterio">Critério</label>
+      <input type="text" id="new-criterio" placeholder="Critério" title="Critério">
+    </div>
+    <div class="form-item">
+      <label for="new-atividade">Atividade</label>
+      <input type="text" id="new-atividade" placeholder="Atividade" title="Atividade do dia">
+    </div>
+    <div class="form-item">
+      <label for="new-inicio">Início</label>
+      <input type="date" id="new-inicio" title="Data de início">
+    </div>
+    <div class="form-item">
+      <label for="new-termino">Término</label>
+      <input type="date" id="new-termino" title="Data de término">
+    </div>
+    <div class="form-item">
+      <label style="opacity: 0;">Ações</label>
+      <div class="form-actions">
+        <button id="add-row-btn" title="Adicionar obra">
+          <i class="fas fa-plus"></i>
+        </button>
+        <button id="clear-form-btn" title="Limpar formulário">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <!-- SEÇÃO DE FILTROS -->
         <section class="filters-section">
           <div class="filters-title"><i class="fas fa-filter"></i> Filtros</div>
           <div class="filter-grid">
@@ -575,15 +799,15 @@
                 <th>Município</th>
                 <th>Atividade do Dia</th>
                 <th>Critério</th>
-                <!-- Nova coluna de critério -->
                 <th>Início</th>
                 <th>Término</th>
                 <th>Status</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody id="table-body">
               <tr>
-                <td colspan="10">
+                <td colspan="11">
                   <div class="loading">
                     <i class="fas fa-spinner fa-spin"></i> Carregando dados...
                   </div>
@@ -625,8 +849,6 @@
         const [day, month, year] = dateString.split("/");
         return new Date(year, month - 1, day);
       }
-
-      // Calcular status com base nas datas
       // Calcular status com base nas datas
       function getStatus(startDate, endDate) {
         if (!startDate || !endDate)
@@ -668,7 +890,7 @@
           console.error("Erro ao carregar os dados:", error);
           document.getElementById("table-body").innerHTML = `
                     <tr>
-                        <td colspan="10">
+                        <td colspan="11">
                             <div class="no-results">
                                 <i class="fas fa-exclamation-triangle"></i>
                                 <p>Erro ao carregar os dados. Verifique o arquivo bd.json.</p>
@@ -720,6 +942,107 @@
           option.textContent = municipio;
           municipioFilter.appendChild(option);
         });
+      }
+
+      // Função para preencher automaticamente os campos quando o código da obra é inserido
+      function autoFillFromObraCode(obraCode) {
+        if (!obraCode) return;
+        
+        // Encontrar a obra no banco de dados
+        const obraExistente = obrasData.find(item => item.C === obraCode);
+        
+        if (obraExistente) {
+          // Preenche apenas título, município e critério (não preenche supervisor e encarregado)
+          document.getElementById('new-titulo').value = obraExistente.D || '';
+          document.getElementById('new-municipio').value = obraExistente.E || '';
+          document.getElementById('new-criterio').value = obraExistente.F || '';
+          
+          // Se já existem datas, preencher também
+          if (obraExistente.I) {
+            const [day, month, year] = obraExistente.I.split('/');
+            document.getElementById('new-inicio').value = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+          }
+          
+          if (obraExistente.J) {
+            const [day, month, year] = obraExistente.J.split('/');
+            document.getElementById('new-termino').value = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+          }
+        } else {
+          // Limpar os campos se não encontrar a obra (exceto supervisor e encarregado)
+          document.getElementById('new-titulo').value = '';
+          document.getElementById('new-municipio').value = '';
+          document.getElementById('new-criterio').value = '';
+        }
+      }
+
+      // Função para adicionar uma nova obra
+      function addNewObra() {
+        const obra = document.getElementById('new-obra').value;
+        const encarregado = document.getElementById('new-encarregado').value;
+        const supervisor = document.getElementById('new-supervisor').value;
+        const titulo = document.getElementById('new-titulo').value;
+        const municipio = document.getElementById('new-municipio').value;
+        const criterio = document.getElementById('new-criterio').value;
+        const atividade = document.getElementById('new-atividade').value;
+        const inicio = document.getElementById('new-inicio').value;
+        const termino = document.getElementById('new-termino').value;
+        
+        if (!obra) {
+          alert('Por favor, informe o código da obra.');
+          return;
+        }
+        
+        // Formatar as datas para o padrão DD/MM/YYYY
+        const inicioFormatado = inicio ? formatDateFromInput(inicio) : '';
+        const terminoFormatado = termino ? formatDateFromInput(termino) : '';
+        
+        // Criar o novo objeto de obra
+        const novaObra = {
+          id: Date.now().toString(), // ID único
+          C: obra,
+          A: encarregado,
+          B: supervisor,
+          D: titulo,
+          E: municipio,
+          F: criterio,
+          atividade: atividade,
+          I: inicioFormatado,
+          J: terminoFormatado
+        };
+        
+        // Adicionar aos dados
+        obrasData.push(novaObra);
+        
+        // Atualizar a tabela
+        renderTable(obrasData);
+        
+        // Limpar o formulário
+        clearForm();
+        
+        // Reaplicar filtros
+        applyFilters();
+        
+        console.log('Nova obra adicionada:', novaObra);
+      }
+
+      // Função para formatar data do input (YYYY-MM-DD) para DD/MM/YYYY
+      function formatDateFromInput(dateString) {
+        if (!dateString) return '';
+        const [year, month, day] = dateString.split('-');
+        return `${day}/${month}/${year}`;
+      }
+
+      // Função para limpar o formulário
+      function clearForm() {
+        document.getElementById('new-obra').value = '';
+        document.getElementById('new-encarregado').value = '';
+        document.getElementById('new-supervisor').value = '';
+        document.getElementById('new-titulo').value = '';
+        document.getElementById('new-municipio').value = '';
+        document.getElementById('new-criterio').value = '';
+        document.getElementById('new-atividade').value = '';
+        document.getElementById('new-inicio').value = '';
+        document.getElementById('new-termino').value = '';
       }
 
       // Função para editar atividade
@@ -835,9 +1158,23 @@
                     <td><span class="status-badge status-${status.status}">${
             status.text
           }</span></td>
+                    <td>
+                        <button onclick="deleteObra('${item.id}')" class="activity-edit-btn" title="Excluir">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
                 `;
           tableBody.appendChild(row);
         });
+      }
+
+      // Função para excluir uma obra
+      function deleteObra(obraId) {
+        if (confirm('Tem certeza que deseja excluir esta obra?')) {
+          obrasData = obrasData.filter(item => item.id !== obraId);
+          renderTable(obrasData);
+          applyFilters();
+        }
       }
 
       // Aplicar filtros
@@ -924,7 +1261,38 @@
 
         renderTable(filteredData);
       }
-
+      function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const toggleIcon = document.querySelector('.sidebar-toggle i');
+        
+        sidebar.classList.toggle('collapsed');
+        
+        if (sidebar.classList.contains('collapsed')) {
+          toggleIcon.classList.remove('fa-chevron-left');
+          toggleIcon.classList.add('fa-chevron-right');
+        } else {
+          toggleIcon.classList.remove('fa-chevron-right');
+          toggleIcon.classList.add('fa-chevron-left');
+        }
+        
+        // Salvar estado no localStorage
+        localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
+      }
+      
+      // Inicializar a sidebar com estado salvo
+      document.addEventListener('DOMContentLoaded', function() {
+        const sidebar = document.getElementById('sidebar');
+        const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+        
+        if (isCollapsed) {
+          sidebar.classList.add('collapsed');
+          document.querySelector('.sidebar-toggle i').classList.remove('fa-chevron-left');
+          document.querySelector('.sidebar-toggle i').classList.add('fa-chevron-right');
+        }
+        
+        // Adicionar evento de clique ao botão de toggle
+        document.getElementById('sidebar-toggle').addEventListener('click', toggleSidebar);
+      });
       // Exportar tabela para PNG ou JPEG
       function exportTable(format) {
         // Primeiro, remover todos os botões de edição e datas da visualização atual
@@ -941,7 +1309,8 @@
         tableHeaders.forEach((header, index) => {
           if (
             header.textContent === "Início" ||
-            header.textContent === "Término"
+            header.textContent === "Término" ||
+            header.textContent === "Ações"
           ) {
             header.style.display = "none";
           }
@@ -975,10 +1344,16 @@
         tableClone.querySelectorAll("th").forEach((header, index) => {
           if (
             header.textContent === "Início" ||
-            header.textContent === "Término"
+            header.textContent === "Término" ||
+            header.textContent === "Ações"
           ) {
             header.style.display = "none";
           }
+        });
+
+        // Ocultar coluna de ações nas células
+        tableClone.querySelectorAll("td:nth-child(11)").forEach(cell => {
+          cell.style.display = "none";
         });
 
         exportElement.appendChild(tableClone);
@@ -1017,10 +1392,16 @@
           tableHeaders.forEach((header, index) => {
             if (
               header.textContent === "Início" ||
-              header.textContent === "Término"
+              header.textContent === "Término" ||
+              header.textContent === "Ações"
             ) {
               header.style.display = "";
             }
+          });
+
+          // Restaurar coluna de ações
+          document.querySelectorAll("td:nth-child(11)").forEach(cell => {
+            cell.style.display = "";
           });
         });
       }
@@ -1064,6 +1445,14 @@
             document.getElementById("search").value = "";
             applyFilters();
           });
+
+        // Adicionar event listeners para a nova funcionalidade
+        document.getElementById('new-obra').addEventListener('input', (e) => {
+          autoFillFromObraCode(e.target.value);
+        });
+
+        document.getElementById('add-row-btn').addEventListener('click', addNewObra);
+        document.getElementById('clear-form-btn').addEventListener('click', clearForm);
       }
 
       // Iniciar quando o documento estiver carregado
