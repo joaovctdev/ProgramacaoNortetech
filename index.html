@@ -447,6 +447,8 @@
 
       .export-btn.png {
         background: linear-gradient(to right, #27ae60, #2ecc71);
+        padding: 9px;
+        text-align: center;
       }
 
       .export-btn.jpeg {
@@ -624,6 +626,150 @@
           flex-direction: column;
         }
       }
+      /* Estilos para o Quadro de Energização */
+      .energizacao-section {
+        background-color: #1E2535;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 30px auto;
+        border: 1px solid #2A3245;
+        max-width: 1121px;
+        width: 95%;
+      }
+      
+      .section-header {
+        display: flex;
+        justify-content: center; /* Centraliza o título */
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #e2c529;
+        position: relative; /* Para posicionar o logo absolutamente */
+      }
+      
+      .section-header h2 {
+        color: #e2c529;
+        font-size: 1.8rem;
+        margin: 0;
+        text-align: center;
+      }
+      
+      /* Logo no header */
+      .energizacao-logo {
+        position: absolute;
+        right: 0;
+        width: 120px;
+        height: auto;
+      }
+      
+      .energizacao-container {
+        background-color: #0E1117;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      
+      .energizacao-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .form-row {
+        display: flex;
+        gap: 15px;
+      }
+      
+      .form-group {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .form-group.full-width {
+        flex: 2;
+      }
+      
+      .form-group label {
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #8892B0;
+        font-size: 14px;
+      }
+      
+      .form-group input, 
+      .form-group textarea {
+        padding: 12px;
+        border: 1px solid #2A3245;
+        border-radius: 5px;
+        background-color: #1a1f29;
+        color: white;
+        font-size: 14px;
+      }
+      
+      /* OBSERVAÇÃO - Agora na parte inferior */
+      .observacao-container {
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid #2A3245;
+      }
+      
+      .observacao-container label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 8px;
+        color: #8892B0;
+        font-size: 14px;
+      }
+      
+      .observacao-container textarea {
+        width: 100%;
+        min-height: 100px;
+        padding: 12px;
+        border: 1px solid #2A3245;
+        border-radius: 5px;
+        background-color: #1a1f29;
+        color: white;
+        font-size: 14px;
+        resize: vertical;
+      }
+      
+      .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+        margin-top: 20px;
+      }
+      
+      #salvar-energizacao {
+        background: linear-gradient(to right, #27ae60, #2ecc71);
+      }
+      
+      #limpar-energizacao {
+        background: linear-gradient(to right, #e74c3c, #c0392b);
+      }
+      
+      /* Responsividade */
+      @media (max-width: 768px) {
+        .form-row {
+          flex-direction: column;
+          gap: 10px;
+        }
+        
+        .section-header {
+          flex-direction: column;
+          gap: 15px;
+          text-align: center;
+        }
+        
+        .energizacao-logo {
+          position: relative;
+          margin-top: 10px;
+        }
+        
+        .form-actions {
+          flex-direction: column;
+        }
+      }
     </style>
   </head>
 <body>
@@ -762,6 +908,12 @@
                 <option value="all">Todos os supervisores</option>
               </select>
             </div>
+            <div class="filter-item">
+              <label for="encarregado-filter">Encarregado:</label>
+              <select id="encarregado-filter">
+                <option value="all">Todos os encarregados</option>
+              </select>
+            </div>
 
             <div class="filter-item">
               <label for="municipio-filter">Município:</label>
@@ -821,11 +973,134 @@
             <p>Nenhuma obra encontrada com os filtros aplicados.</p>
           </div>
         </section>
-
-        <footer>
+      </div>
+      <!-- SEÇÃO DO QUADRO DE ENERGIZAÇÃO -->
+      <section class="energizacao-section" id="quadro-energizacao">
+        <div class="section-header">
+          <h2><i class="fas fa-bolt"></i> QUADRO DE ENERGIZAÇÃO</h2>
+          <img src="NorteTech.png" alt="Norte Tech Logo" class="energizacao-logo">
+        </div>
+        
+        <div class="energizacao-container">
+          <div class="energizacao-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="energizacao-obra">Obra:</label>
+                <input type="text" id="energizacao-obra" placeholder="MP-CCOL-POV. CHUVEIRO-RURAL">
+              </div>
+              <div class="form-group">
+                <label for="energizacao-projeto-obra">Projeto OBRA:</label>
+                <input type="text" id="energizacao-projeto-obra" placeholder="B-1048584">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="energizacao-projeto-kit">Projeto KIT:</label>
+                <input type="text" id="energizacao-projeto-kit" placeholder="B-1048585">
+              </div>
+              <div class="form-group">
+                <label for="energizacao-projeto-medidor">Projeto MEDIDOR:</label>
+                <input type="text" id="energizacao-projeto-medidor" placeholder="B-1049146">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="energizacao-municipio">Município:</label>
+                <input type="text" id="energizacao-municipio" placeholder="LAPÃO">
+              </div>
+              <div class="form-group">
+                <label for="energizacao-utd">UTD:</label>
+                <input type="text" id="energizacao-utd" placeholder="IRECÊ">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="energizacao-plano">Plano:</label>
+                <input type="text" id="energizacao-plano" placeholder="PLANO 14.4.12.1-LPT">
+              </div>
+              <div class="form-group">
+                <label for="energizacao-criterio">Critério:</label>
+                <input type="text" id="energizacao-criterio" placeholder="AIC AUDITORIA">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="energizacao-fiscal">Fiscal / AR:</label>
+                <input type="text" id="energizacao-fiscal" placeholder="ALINE LIMA SILVA - U468383">
+              </div>
+              <div class="form-group">
+                <label for="energizacao-encarregado">Encarregado:</label>
+                <input type="text" id="energizacao-encarregado" placeholder="IRISMAR MARQUES SILVA - NTS493543">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="energizacao-supervisor">Supervisor:</label>
+                <input type="text" id="energizacao-supervisor" placeholder="HIAGO DE CIRQUEIRA PEREIRA - NTS449580">
+              </div>
+              <div class="form-group">
+                <label for="energizacao-pes">PES:</label>
+                <input type="text" id="energizacao-pes" placeholder="2025-86065">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="energizacao-oc">OC:</label>
+                <input type="text" id="energizacao-oc" placeholder="2025-8-62879">
+              </div>
+              <div class="form-group">
+                <label for="energizacao-data-pms">Data da PMS:</label>
+                <input type="date" id="energizacao-data-pms">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="energizacao-postes">Postes:</label>
+                <input type="number" id="energizacao-postes" placeholder="25">
+              </div>
+              <div class="form-group">
+                <label for="energizacao-clientes">Clientes Ligados:</label>
+                <input type="text" id="energizacao-clientes" placeholder="NÃO, (SERÃO LIGADOS 04 CLIENTES LPT)">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="energizacao-perdas">Perdas:</label>
+                <input type="number" id="energizacao-perdas" placeholder="0">
+              </div>
+            </div>
+            
+            <!-- OBSERVAÇÃO - Agora na parte inferior, separada -->
+            <div class="observacao-container">
+              <label for="energizacao-obs">OBSERVAÇÕES:</label>
+              <textarea id="energizacao-obs" placeholder="Observações adicionais"></textarea>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button id="salvar-energizacao">
+              <i class="fas fa-save"></i> Salvar Quadro
+            </button>
+            <button id="limpar-energizacao">
+              <i class="fas fa-times"></i> Limpar
+            </button>
+            <button id="export-energizacao" class="export-btn png">
+              <i class="fas fa-download"></i> Exportar Quadro
+            </button>
+          </div>
+        </div>
+</section>
+<footer>
           <p>joaovctdev &copy; 2025 - Sistema de Gerenciamento de Obras</p>
         </footer>
-      </div>
     </main>
 
     <script>
@@ -925,10 +1200,12 @@
       // Popular os filtros com dados dinâmicos
       function populateFilters(data) {
         const supervisorFilter = document.getElementById("supervisor-filter");
+        const encarregadoFilter = document.getElementById("encarregado-filter")
         const municipioFilter = document.getElementById("municipio-filter");
 
         const supervisors = [...new Set(data.map((item) => item.B))];
         const municipios = [...new Set(data.map((item) => item.E))];
+        const encarregado = [...new Set(data.map((item) => item.A))]
 
         supervisors.forEach((supervisor) => {
           const option = document.createElement("option");
@@ -942,6 +1219,13 @@
           option.value = municipio;
           option.textContent = municipio;
           municipioFilter.appendChild(option);
+        });
+      
+        encarregado.forEach((encarregado) => {
+          const option = document.createElement("option");
+          option.value = encarregado;
+          option.textContent = encarregado;
+          encarregadoFilter.appendChild(option);
         });
       }
 
@@ -1188,6 +1472,8 @@
           document.getElementById("supervisor-filter").value;
         const municipioFilter =
           document.getElementById("municipio-filter").value;
+        const encarregadoFilter=
+          document.getElementById("encarregado-filter").value;
         const searchText = document
           .getElementById("search")
           .value.toLowerCase();
@@ -1205,6 +1491,12 @@
         if (municipioFilter !== "all") {
           filteredData = filteredData.filter(
             (item) => item.E === municipioFilter
+          );
+        }
+        // Filtrar por Encarregado
+        if (encarregadoFilter !== "all") {
+          filteredData = filteredData.filter(
+            (item) => item.A === encarregadoFilter
           );
         }
 
@@ -1432,6 +1724,9 @@
           .getElementById("supervisor-filter")
           .addEventListener("change", applyFilters);
         document
+          .getElementById("encarregado-filter")
+          .addEventListener("change", applyFilters);
+        document
           .getElementById("municipio-filter")
           .addEventListener("change", applyFilters);
         document
@@ -1442,6 +1737,7 @@
           .addEventListener("click", () => {
             document.getElementById("date-filter").value = "today";
             document.getElementById("supervisor-filter").value = "all";
+            document.getElementById("encarregado-filter").value = "all";
             document.getElementById("municipio-filter").value = "all";
             document.getElementById("search").value = "";
             applyFilters();
@@ -1458,6 +1754,163 @@
 
       // Iniciar quando o documento estiver carregado
       document.addEventListener("DOMContentLoaded", init);
+     // Função para exportar apenas o Quadro de Energização
+function exportEnergizacao() {
+    const originalSection = document.getElementById('quadro-energizacao');
+    const exportElement = originalSection.cloneNode(true);
+    
+    // Remover botões de ação do clone
+    exportElement.querySelector('.form-actions').style.display = 'none';
+    
+    // Estilizar para exportação
+    exportElement.style.backgroundColor = '#0E1117';
+    exportElement.style.padding = '20px';
+    exportElement.style.borderRadius = '10px';
+    exportElement.style.width = '800px';
+    exportElement.style.margin = '0 auto';
+    
+    // Centralizar título na exportação
+    const header = exportElement.querySelector('.section-header');
+    header.style.justifyContent = 'center';
+    
+    // Ajustar logo para exportação
+    const logo = exportElement.querySelector('.energizacao-logo');
+    if (logo) {
+        logo.style.position = 'absolute';
+        logo.style.right = '20px';
+    }
+    
+    // Adicionar ao documento temporariamente
+    exportElement.style.position = 'fixed';
+    exportElement.style.left = '-9999px';
+    exportElement.style.top = '0';
+    document.body.appendChild(exportElement);
+    
+    // Capturar como imagem
+    html2canvas(exportElement, {
+        scale: 2,
+        backgroundColor: '#0E1117',
+        onclone: function(clonedDoc) {
+            // Garantir que o título esteja centralizado no clone também
+            const clonedHeader = clonedDoc.querySelector('.section-header');
+            if (clonedHeader) {
+                clonedHeader.style.justifyContent = 'center';
+            }
+        }
+    }).then((canvas) => {
+        const link = document.createElement('a');
+        link.download = 'quadro-energizacao-nortetech.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        
+        // Remover o elemento temporário
+        document.body.removeChild(exportElement);
+    });
+}
+
+// Função para limpar o formulário de energização
+function limparEnergizacao() {
+    document.querySelectorAll('.energizacao-form input, .energizacao-form textarea').forEach(input => {
+        input.value = '';
+    });
+}
+
+// Função para salvar os dados do Quadro de Energização
+function salvarEnergizacao() {
+    const dados = {
+        obra: document.getElementById('energizacao-obra').value,
+        projetoObra: document.getElementById('energizacao-projeto-obra').value,
+        projetoKit: document.getElementById('energizacao-projeto-kit').value,
+        projetoMedidor: document.getElementById('energizacao-projeto-medidor').value,
+        municipio: document.getElementById('energizacao-municipio').value,
+        utd: document.getElementById('energizacao-utd').value,
+        plano: document.getElementById('energizacao-plano').value,
+        criterio: document.getElementById('energizacao-criterio').value,
+        fiscal: document.getElementById('energizacao-fiscal').value,
+        encarregado: document.getElementById('energizacao-encarregado').value,
+        supervisor: document.getElementById('energizacao-supervisor').value,
+        pes: document.getElementById('energizacao-pes').value,
+        oc: document.getElementById('energizacao-oc').value,
+        dataPms: document.getElementById('energizacao-data-pms').value,
+        postes: document.getElementById('energizacao-postes').value,
+        clientes: document.getElementById('energizacao-clientes').value,
+        perdas: document.getElementById('energizacao-perdas').value,
+        obs: document.getElementById('energizacao-obs').value
+    };
+    
+    // Salvar no localStorage
+    localStorage.setItem('quadroEnergizacao', JSON.stringify(dados));
+    
+    alert('Quadro de Energização salvo com sucesso!');
+}
+
+// Carregar dados salvos (se existirem)
+function carregarEnergizacaoSalvo() {
+    const dadosSalvos = localStorage.getItem('quadroEnergizacao');
+    if (dadosSalvos) {
+        const dados = JSON.parse(dadosSalvos);
+        
+        document.getElementById('energizacao-obra').value = dados.obra || '';
+        document.getElementById('energizacao-projeto-obra').value = dados.projetoObra || '';
+        document.getElementById('energizacao-projeto-kit').value = dados.projetoKit || '';
+        document.getElementById('energizacao-projeto-medidor').value = dados.projetoMedidor || '';
+        document.getElementById('energizacao-municipio').value = dados.municipio || '';
+        document.getElementById('energizacao-utd').value = dados.utd || '';
+        document.getElementById('energizacao-plano').value = dados.plano || '';
+        document.getElementById('energizacao-criterio').value = dados.criterio || '';
+        document.getElementById('energizacao-fiscal').value = dados.fiscal || '';
+        document.getElementById('energizacao-encarregado').value = dados.encarregado || '';
+        document.getElementById('energizacao-supervisor').value = dados.supervisor || '';
+        document.getElementById('energizacao-pes').value = dados.pes || '';
+        document.getElementById('energizacao-oc').value = dados.oc || '';
+        document.getElementById('energizacao-data-pms').value = dados.dataPms || '';
+        document.getElementById('energizacao-postes').value = dados.postes || '';
+        document.getElementById('energizacao-clientes').value = dados.clientes || '';
+        document.getElementById('energizacao-perdas').value = dados.perdas || '';
+        document.getElementById('energizacao-obs').value = dados.obs || '';
+    }
+}
+
+// Adicionar event listeners para o Quadro de Energização
+document.addEventListener('DOMContentLoaded', function() {
+    // Carregar dados salvos
+    carregarEnergizacaoSalvo();
+    
+    // Adicionar event listeners
+    document.getElementById('export-energizacao').addEventListener('click', exportEnergizacao);
+    document.getElementById('salvar-energizacao').addEventListener('click', salvarEnergizacao);
+    document.getElementById('limpar-energizacao').addEventListener('click', limparEnergizacao);
+    
+    // Preencher automaticamente a data atual no campo Data da PMS
+    const dataPmsField = document.getElementById('energizacao-data-pms');
+    if (dataPmsField && !dataPmsField.value) {
+        const hoje = new Date();
+        const ano = hoje.getFullYear();
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+        const dia = String(hoje.getDate()).padStart(2, '0');
+        dataPmsField.value = `${ano}-${mes}-${dia}`;
+    }
+});
+
+// Função para preencher automaticamente dados de exemplo (para teste)
+function preencherDadosExemplo() {
+    document.getElementById('energizacao-obra').value = 'MP-CCOL-POV. CHUVEIRO-RURAL';
+    document.getElementById('energizacao-projeto-obra').value = 'B-1048584';
+    document.getElementById('energizacao-projeto-kit').value = 'B-1048585';
+    document.getElementById('energizacao-projeto-medidor').value = 'B-1049146';
+    document.getElementById('energizacao-municipio').value = 'LAPÃO';
+    document.getElementById('energizacao-utd').value = 'IRECÊ';
+    document.getElementById('energizacao-plano').value = 'PLANO 14.4.12.1-LPT';
+    document.getElementById('energizacao-criterio').value = 'AIC AUDITORIA';
+    document.getElementById('energizacao-fiscal').value = 'ALINE LIMA SILVA - U468383';
+    document.getElementById('energizacao-encarregado').value = 'IRISMAR MARQUES SILVA - NTS493543';
+    document.getElementById('energizacao-supervisor').value = 'HIAGO DE CIRQUEIRA PEREIRA - NTS449580';
+    document.getElementById('energizacao-pes').value = '2025-86065';
+    document.getElementById('energizacao-oc').value = '2025-8-62879';
+    document.getElementById('energizacao-postes').value = '25';
+    document.getElementById('energizacao-clientes').value = 'NÃO, (SERÃO LIGADOS 04 CLIENTES LPT)';
+    document.getElementById('energizacao-perdas').value = '0';
+}
     </script>
   </body>
 </html>
