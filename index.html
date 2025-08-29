@@ -452,7 +452,10 @@
       }
 
       .export-btn.jpeg {
-        background: linear-gradient(to right, #3498db, #2980b9);
+          background: linear-gradient(to right, #3498db, #2980b9);
+          opacity: 0;
+          position: absolute;
+          pointer-events: none;
       }
 
       #reset-filters {
@@ -807,7 +810,7 @@
   </nav>
   <div class="sidebar-footer">
     João Victor Santos &copy; 2025<br />
-    Versão 0.1.0
+    Versão 0.2.0
   </div>
 </aside>
 
@@ -831,6 +834,9 @@
           <button id="export-jpeg" class="export-btn jpeg">
             <i class="fas fa-download"></i> Exportar JPEG
           </button>
+          <button id="export-png-date" class="export-btn png-date" onclick="exportTableWithDates('png')">
+                <i class="fas fa-download"></i> Exportar PNG C/ Data
+            </button>
         </div>
 
         <!-- SEÇÃO PARA ADICIONAR NOVAS LINHAS - FORMULÁRIO HORIZONTAL -->
@@ -863,7 +869,7 @@
     </div>
     <div class="form-item">
       <label for="new-atividade">Atividade</label>
-      <input type="text" id="new-atividade" placeholder="Atividade" title="Atividade do dia">
+      <input type="text" id="new-atividade" placeholder="Atividade" title="Atividade do dia" >
     </div>
     <div class="form-item">
       <label for="new-inicio">Início</label>
@@ -1632,7 +1638,15 @@
         tableClone.querySelectorAll(".date-cell").forEach((cell) => {
           cell.style.display = "none";
         });
-
+        tableClone.querySelectorAll("td:nth-child(6)").forEach(cell => {
+            const atividadeDiv = cell.querySelector('.atividade-text');
+            if (atividadeDiv) {
+                atividadeDiv.textContent = atividadeDiv.textContent.toUpperCase();
+            } else {
+                // Se não encontrar a classe específica, converte todo o conteúdo da célula
+                cell.textContent = cell.textContent.toUpperCase();
+            }
+        });
         // Ocultar cabeçalhos das colunas de data no clone
         tableClone.querySelectorAll("th").forEach((header, index) => {
           if (
@@ -1698,7 +1712,101 @@
           });
         });
       }
+      function exportTableWithDates(format) {
+        // Primeiro, remover apenas os botões de edição da visualização atual
+        document.querySelectorAll(".activity-edit-btn").forEach((btn) => {
+            btn.style.display = "none";
+        });
 
+        // Ocultar cabeçalho da coluna de ações
+        const tableHeaders = document.querySelectorAll("th");
+        tableHeaders.forEach((header, index) => {
+            if (header.textContent === "Ações") {
+                header.style.display = "none";
+            }
+        });
+
+        // Criar um elemento temporário para exportação
+        const exportElement = document.createElement("div");
+        exportElement.style.backgroundColor = "#0E1117";
+        exportElement.style.padding = "20px";
+        exportElement.style.borderRadius = "10px";
+
+        // Clonar o header
+        const headerClone = document.querySelector("header").cloneNode(true);
+        exportElement.appendChild(headerClone);
+
+        // Clonar a tabela
+        const tableClone = document
+            .getElementById("table-to-export")
+            .cloneNode(true);
+
+        // Remover apenas botões de edição do clone (mantendo as datas e status)
+        tableClone.querySelectorAll(".activity-edit-btn").forEach((btn) => {
+            btn.style.display = "none";
+        });
+
+        // Ocultar cabeçalho da coluna de ações no clone
+        tableClone.querySelectorAll("th").forEach((header, index) => {
+            if (header.textContent === "Ações") {
+                header.style.display = "none";
+            }
+        });
+        tableClone.querySelectorAll("td:nth-child(6)").forEach(cell => {
+            const atividadeDiv = cell.querySelector('.atividade-text');
+            if (atividadeDiv) {
+                atividadeDiv.textContent = atividadeDiv.textContent.toUpperCase();
+            } else {
+                // Se não encontrar a classe específica, converte todo o conteúdo da célula
+                cell.textContent = cell.textContent.toUpperCase();
+            }
+        });
+        // Ocultar coluna de ações nas células (ajustado para a 11ª coluna)
+        tableClone.querySelectorAll("td:nth-child(11)").forEach(cell => {
+            cell.style.display = "none";
+        });
+
+        exportElement.appendChild(tableClone);
+
+        // Adicionar ao documento temporariamente
+        exportElement.style.position = "fixed";
+        exportElement.style.left = "-9999px";
+        document.body.appendChild(exportElement);
+
+        // Capturar como imagem
+        html2canvas(exportElement, {
+            scale: 2,
+            backgroundColor: "#0E1117",
+        }).then((canvas) => {
+            const link = document.createElement("a");
+            link.download = `programacao-obras-nortetech-com-datas.${format}`;
+            link.href =
+                format === "png"
+                    ? canvas.toDataURL("image/png")
+                    : canvas.toDataURL("image/jpeg", 0.9);
+            link.click();
+
+            // Remover o elemento temporário
+            document.body.removeChild(exportElement);
+
+            // Restaurar os botões de edição na visualização
+            document.querySelectorAll(".activity-edit-btn").forEach((btn) => {
+                btn.style.display = "";
+            });
+
+            // Restaurar cabeçalho da coluna de ações
+            tableHeaders.forEach((header, index) => {
+                if (header.textContent === "Ações") {
+                    header.style.display = "";
+                }
+            });
+
+            // Restaurar coluna de ações (ajustado para a 11ª coluna)
+            document.querySelectorAll("td:nth-child(11)").forEach(cell => {
+                cell.style.display = "";
+            });
+        });
+    }
       // Inicializar a aplicação
       function init() {
         // Atualizar data atual no header
