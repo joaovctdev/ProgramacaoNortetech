@@ -23,7 +23,7 @@
    "D": "ER-CIND-ET-FLORESTA-RURAL",
    "E": "JOÃO DOURADO",
    "F": "QLP",
-   "G": "INTERCALAR POSTE 11/600 N1-3 EM REDE 3X4 13,8Kv",
+   "G": "INTERCALAR POSTE 11/600 N1-3 EM REDE 3X4 13,8Kv - CAVA EM ROCHA",
    "H": "1",
    "I": "02/09/2025",
    "J": "02/09/2025",
@@ -59,7 +59,7 @@
    "F": "AIC AUDITORIA",
    "G": "N3 PARA N4 EM POSTE EXISTETE",
    "H": "18",
-   "I": "05/09/2025",
+   "I": "11/09/2025",
    "J": "19/09/2025",
    "K": "",
    "L": "LV",
@@ -234,8 +234,8 @@
    "K": "",
    "L": "LV",
    "M": "",
-   "N": "17",
-   "O": "5"
+   "N": "54",
+   "O": "18"
  },
  {
    "A": "FELIPE",
@@ -318,7 +318,7 @@
    "J": "10/09/2025",
    "K": "",
    "L": "LV",
-   "M": "03/09/2025",
+   "M": "",
    "N": "2",
    "O": "0"
  },
@@ -363,7 +363,7 @@
    "D": "AC-CIND-POV-POCO-RURAL",
    "E": "UIBAÍ",
    "F": "QLP",
-   "G": "INTERCALAR POSTE 12/600 N1-T TR 30KvA EM REDE 3X4 13,8Kv",
+   "G": "INTERCALAR POSTE 12/600 N1-T TR 30KvA EM REDE 3X4 13,8Kv fazer ate dia 20",
    "H": "8",
    "I": "03/09/2025",
    "J": "05/09/2025",
