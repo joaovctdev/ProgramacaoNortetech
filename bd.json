@@ -1,22 +1,5 @@
 [
  {
-   "A": "ENES",
-   "B": "RENATO",
-   "C": "B-0816827",
-   "D": "MP-CCOL-COM LAGOA DE ITAPARICA-RURAL",
-   "E": "XIQUE-XIQUE",
-   "F": "JUDICIAL",
-   "G": "",
-   "H": "164",
-   "I": "15/09/2025",
-   "J": "30/09/2025",
-   "K": "",
-   "L": "LV",
-   "M": "",
-   "N": "0",
-   "O": "0"
- },
- {
    "A": "ALEX SANDRO",
    "B": "DJALMA",
    "C": "B-1206576",
@@ -30,8 +13,8 @@
    "K": "",
    "L": "LV",
    "M": "REALIZADO",
-   "N": "0",
-   "O": "0"
+   "N": "1",
+   "O": "1"
  },
  {
    "A": "ALEX SANDRO",
@@ -99,7 +82,7 @@
    "L": "LV",
    "M": "",
    "N": "25",
-   "O": "0"
+   "O": "17"
  },
  {
    "A": "ALEX SANDRO",
@@ -116,7 +99,7 @@
    "L": "DESLIGAMENTO",
    "M": "",
    "N": "1",
-   "O": "0"
+   "O": "1"
  },
  {
    "A": "ALAN",
@@ -132,8 +115,8 @@
    "K": "",
    "L": "LV",
    "M": "",
-   "N": "6",
-   "O": "2"
+   "N": "14",
+   "O": "11"
  },
  {
    "A": "EDIMILSON",
@@ -149,7 +132,7 @@
    "K": "",
    "L": "DESLIGAMENTO/LV",
    "M": "12/09/2025",
-   "N": "7",
+   "N": "10",
    "O": "0"
  },
  {
@@ -166,7 +149,7 @@
    "K": "",
    "L": "LV",
    "M": "",
-   "N": "0",
+   "N": "61",
    "O": "0"
  },
  {
@@ -184,7 +167,7 @@
    "L": "",
    "M": "",
    "N": "0",
-   "O": "0"
+   "O": "4"
  },
  {
    "A": "JARBAS",
@@ -218,7 +201,7 @@
    "L": "",
    "M": "",
    "N": "36",
-   "O": "0"
+   "O": "21"
  },
  {
    "A": "IRISMAR, MARCOS PAULO",
@@ -234,8 +217,8 @@
    "K": "",
    "L": "LV",
    "M": "",
-   "N": "54",
-   "O": "18"
+   "N": "58",
+   "O": "58"
  },
  {
    "A": "FELIPE",
@@ -244,7 +227,7 @@
    "D": "AC-CIND-RUA-PARU 2-CENTRO-NOVA VISTA II",
    "E": "CENTRAL",
    "F": "QLP",
-   "G": "DP 04/09 - SUBSTIRUIR POSTE BT E RELOCAR REDE BT - TR 30KvA 131M DE CABO 3X35(35)MM²",
+   "G": "ENERGIZADA",
    "H": "0",
    "I": "04/09/2025",
    "J": "04/09/2025",
@@ -303,7 +286,7 @@
    "L": "LV",
    "M": "REALIZADO",
    "N": "5",
-   "O": "0"
+   "O": "5"
  },
  {
    "A": "FELIPE",
@@ -320,16 +303,16 @@
    "L": "LV",
    "M": "",
    "N": "2",
-   "O": "0"
+   "O": "14"
  },
  {
-   "A": "EDIMILSON, JARBAS, MARCOS PAULO, JAILSON, IRISMAR",
+   "A": "EDIMILSON",
    "B": "HIAGO",
    "C": "B-1145280",
    "D": "AC-CIND-POV-LAGOA GRANDE-RURAL",
    "E": "IBIPEBA",
    "F": "FATURA PG CLIENTE",
-   "G": "DP 04/09 - ADF MT/BT SUBSTITUIÇÃO DE TR E CONDUTOR - TR 30KvA 332M DE CABO 3X35(35)MM²",
+   "G": "ENERGIZADA",
    "H": "0",
    "I": "04/09/2025",
    "J": "04/09/2025",
@@ -370,8 +353,8 @@
    "K": "",
    "L": "LV",
    "M": "05/09/2025",
-   "N": "0",
-   "O": "0"
+   "N": "8",
+   "O": "4"
  },
  {
    "A": "ESMERALDO, GIORLAN",
@@ -388,7 +371,7 @@
    "L": "LV",
    "M": "",
    "N": "228",
-   "O": "178"
+   "O": "205"
  },
  {
    "A": "ALEX SANDRO",
@@ -397,7 +380,7 @@
    "D": "AC-CIND-POV-MACEDONIA 20-RURAL",
    "E": "JOÃO DOURADO",
    "F": "FATURA PG CLIENTE",
-   "G": "DP 04/09 - ADF MT SUBSTITUIÇÃO DE TR - TR 30KvA",
+   "G": "ENERGIZADA",
    "H": "0",
    "I": "04/09/2025",
    "J": "04/09/2025",
@@ -421,7 +404,7 @@
    "K": "",
    "L": "DESLIGAMENTO/LV",
    "M": "12/09/2025",
-   "N": "0",
+   "N": "15",
    "O": "0"
  }
 ]
