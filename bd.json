@@ -57,7 +57,7 @@
    "D": "ER-CIND-POV-ANGICAL-POCO ARTESIANO-RURAL",
    "E": "JOÃO DOURADO",
    "F": "LPT",
-   "G": "BT",
+   "G": "ENERGIZADA",
    "H": "2",
    "I": "05/09/2025",
    "J": "05/09/2025",
@@ -150,7 +150,7 @@
    "L": "LV",
    "M": "",
    "N": "61",
-   "O": "0"
+   "O": "11"
  },
  {
    "A": "VANILSON",
@@ -244,7 +244,7 @@
    "D": "AC-CIND-FAZ-UMBURANINHA 1-RURAL",
    "E": "IBIPEBA",
    "F": "QLP",
-   "G": " DP 05/09 - ADF BT SUBSTITUIÇÃO DE TR E CONDUTOR",
+   "G": "ENERGIZADA",
    "H": "0",
    "I": "05/09/2025",
    "J": "05/09/2025",
@@ -263,7 +263,7 @@
    "F": "SUBSÍDIO DE DEFESA",
    "G": "INTERCALAR POSTE 11/600 N1-3 EM REDE 3X4 13,8Kv",
    "H": "31",
-   "I": "10/09/2025",
+   "I": "08/09/2025",
    "J": "24/09/2025",
    "K": "",
    "L": "LV",
@@ -302,7 +302,7 @@
    "K": "",
    "L": "LV",
    "M": "",
-   "N": "2",
+   "N": "6",
    "O": "14"
  },
  {
@@ -346,15 +346,15 @@
    "D": "AC-CIND-POV-POCO-RURAL",
    "E": "UIBAÍ",
    "F": "QLP",
-   "G": "INTERCALAR POSTE 12/600 N1-T TR 30KvA EM REDE 3X4 13,8Kv fazer ate dia 20",
+   "G": "ENERGIZADA",
    "H": "8",
-   "I": "04/09/2025",
-   "J": "09/09/2025",
+   "I": "03/09/2025",
+   "J": "04/09/2025",
    "K": "",
    "L": "LV",
    "M": "05/09/2025",
    "N": "8",
-   "O": "4"
+   "O": "8"
  },
  {
    "A": "ESMERALDO, GIORLAN",
@@ -371,7 +371,7 @@
    "L": "LV",
    "M": "",
    "N": "228",
-   "O": "205"
+   "O": "212"
  },
  {
    "A": "ALEX SANDRO",
