@@ -2091,11 +2091,11 @@
             "energizacao-fiscal": "K",
             "energizacao-encarregado": "I",
             "energizacao-supervisor": "J",
-            "energizacao-pes": "U",
-            "energizacao-oc": "AM",
-            "energizacao-data-pms": "AL",
-            "energizacao-postes": "AC",
-            "energizacao-clientes": "AB",
+            "energizacao-pes": "V",
+            "energizacao-oc": "AO",
+            "energizacao-data-pms": "AN",
+            "energizacao-postes": "AG",
+            "energizacao-clientes": "AC",
           };
 
           // Carregar o arquivo JSON
@@ -2109,7 +2109,7 @@
             .then((data) => {
               // Verificar se há obras com data na coluna AL
               const obrasComData = data.filter(
-                (obra) => obra.AL && obra.AL.trim() !== ""
+                (obra) => obra.AN && obra.AN.trim() !== ""
               );
 
               if (obrasComData.length === 0) {
@@ -2123,7 +2123,7 @@
               obrasComData.forEach((obra) => {
                 const option = document.createElement("option");
                 option.value = obra.E; // Usar o nome da obra como valor
-                option.textContent = `${obra.E} (${obra.AL})`;
+                option.textContent = `${obra.E} (${obra.AN})`;
                 option.dataset.obra = JSON.stringify(obra);
                 obraSelect.appendChild(option);
               });
@@ -2155,7 +2155,7 @@
               if (jsonKey === "UTD") {
                 // Valor fixo para UTD
                 field.value = "IRECÊ";
-              } else if (jsonKey === "AL" && obra[jsonKey]) {
+              } else if (jsonKey === "AN" && obra[jsonKey]) {
                 // Formatar data para o input type="date" (YYYY-MM-DD)
                 const dateParts = obra[jsonKey].split("/");
                 if (dateParts.length === 3) {
