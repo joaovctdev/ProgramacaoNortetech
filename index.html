@@ -1239,7 +1239,8 @@
           const [day, month, year] = dateString.split("/");
           return new Date(year, month - 1, day);
         }
-        // Calcular status com base nas datas
+
+        // Calcular status com base nas datas - FUNÇÃO CORRIGIDA
         function getStatus(startDate, endDate) {
           if (!startDate || !endDate)
             return { status: "pending", text: "Pendente" };
@@ -1247,11 +1248,11 @@
           const start = parseDate(startDate);
           const end = parseDate(endDate);
 
+          if (!start || !end) return { status: "pending", text: "Pendente" };
+
           // Resetar horas para comparar apenas as datas
           const today = new Date();
           today.setHours(0, 0, 0, 0);
-
-          // Ajustar as datas de início e término para comparar apenas a data (sem hora)
           start.setHours(0, 0, 0, 0);
           end.setHours(0, 0, 0, 0);
 
@@ -1267,14 +1268,18 @@
         // Carregar dados do arquivo JSON
         async function loadData() {
           try {
-            // Em um ambiente real, descomente a linha abaixo
             const response = await fetch("bd.json");
             obrasData = await response.json();
 
+            // Garantir que cada item tenha um ID único
+            obrasData.forEach((item, index) => {
+              if (!item.id) {
+                item.id = `obra-${index}-${Date.now()}`;
+              }
+            });
+
             renderTable(obrasData);
             populateFilters(obrasData);
-
-            // Aplicar filtro inicial APÓS os dados serem carregados
             applyFilters();
           } catch (error) {
             console.error("Erro ao carregar os dados:", error);
@@ -1318,9 +1323,15 @@
             document.getElementById("encarregado-filter");
           const municipioFilter = document.getElementById("municipio-filter");
 
-          const supervisors = [...new Set(data.map((item) => item.B))];
-          const municipios = [...new Set(data.map((item) => item.E))];
-          const encarregado = [...new Set(data.map((item) => item.A))];
+          const supervisors = [
+            ...new Set(data.map((item) => item.B).filter(Boolean)),
+          ];
+          const municipios = [
+            ...new Set(data.map((item) => item.F).filter(Boolean)),
+          ];
+          const encarregados = [
+            ...new Set(data.map((item) => item.A).filter(Boolean)),
+          ];
 
           supervisors.forEach((supervisor) => {
             const option = document.createElement("option");
@@ -1336,7 +1347,7 @@
             municipioFilter.appendChild(option);
           });
 
-          encarregado.forEach((encarregado) => {
+          encarregados.forEach((encarregado) => {
             const option = document.createElement("option");
             option.value = encarregado;
             option.textContent = encarregado;
@@ -1348,20 +1359,17 @@
         function autoFillFromObraCode(obraCode) {
           if (!obraCode) return;
 
-          // Encontrar a obra no banco de dados
           const obraExistente = obrasData.find((item) => item.C === obraCode);
 
           if (obraExistente) {
-            // Preenche apenas título, município e critério (não preenche supervisor e encarregado)
             document.getElementById("new-titulo").value = obraExistente.D || "";
             document.getElementById("new-municipio").value =
-              obraExistente.E || "";
-            document.getElementById("new-criterio").value =
               obraExistente.F || "";
+            document.getElementById("new-criterio").value =
+              obraExistente.G || "";
 
-            // Se já existem datas, preencher também
-            if (obraExistente.I) {
-              const [day, month, year] = obraExistente.I.split("/");
+            if (obraExistente.J) {
+              const [day, month, year] = obraExistente.J.split("/");
               document.getElementById(
                 "new-inicio"
               ).value = `${year}-${month.padStart(2, "0")}-${day.padStart(
@@ -1370,8 +1378,8 @@
               )}`;
             }
 
-            if (obraExistente.J) {
-              const [day, month, year] = obraExistente.J.split("/");
+            if (obraExistente.K) {
+              const [day, month, year] = obraExistente.K.split("/");
               document.getElementById(
                 "new-termino"
               ).value = `${year}-${month.padStart(2, "0")}-${day.padStart(
@@ -1380,7 +1388,6 @@
               )}`;
             }
           } else {
-            // Limpar os campos se não encontrar a obra (exceto supervisor e encarregado)
             document.getElementById("new-titulo").value = "";
             document.getElementById("new-municipio").value = "";
             document.getElementById("new-criterio").value = "";
@@ -1404,36 +1411,26 @@
             return;
           }
 
-          // Formatar as datas para o padrão DD/MM/YYYY
           const inicioFormatado = inicio ? formatDateFromInput(inicio) : "";
           const terminoFormatado = termino ? formatDateFromInput(termino) : "";
 
-          // Criar o novo objeto de obra
           const novaObra = {
-            id: Date.now().toString(), // ID único
+            id: `obra-${Date.now()}`,
             C: obra,
             A: encarregado,
             B: supervisor,
             D: titulo,
-            E: municipio,
-            F: criterio,
+            F: municipio,
+            G: criterio,
             atividade: atividade,
-            I: inicioFormatado,
-            J: terminoFormatado,
+            J: inicioFormatado, // Data de início
+            K: terminoFormatado, // Data de término
           };
 
-          // Adicionar aos dados
           obrasData.push(novaObra);
-
-          // Atualizar a tabela
           renderTable(obrasData);
-
-          // Limpar o formulário
           clearForm();
-
-          // Reaplicar filtros
           applyFilters();
-
           console.log("Nova obra adicionada:", novaObra);
         }
 
@@ -1467,14 +1464,12 @@
           );
           const currentActivity = activityText.textContent;
 
-          // Criar input para edição
           activityCell.innerHTML = `
                         <input type="text" id="activity-input-${index}" class="activity-input" value="${currentActivity}" placeholder="">
                         <button onclick="saveActivity(${index}, '${obraId}')" class="activity-edit-btn"><i class="fas fa-check"></i></button>
                         <button onclick="cancelEdit(${index}, '${currentActivity}')" class="activity-edit-btn"><i class="fas fa-times"></i></button>
                     `;
 
-          // Focar no input e adicionar evento para desaparecer com o placeholder ao digitar
           const inputElement = document.getElementById(
             `activity-input-${index}`
           );
@@ -1491,16 +1486,12 @@
             `activity-input-${index}`
           ).value;
 
-          // Atualizar os dados
           const obraIndex = obrasData.findIndex((item) => item.id === obraId);
           if (obraIndex !== -1) {
             obrasData[obraIndex].atividade = newActivity;
           }
 
-          // Atualizar a exibição (sem o botão de edição)
           updateActivityDisplay(index, obraId, newActivity, false);
-
-          // Aqui você pode adicionar código para salvar no servidor se necessário
           console.log(`Atividade salva para obra ${obraId}:`, newActivity);
         }
 
@@ -1548,7 +1539,8 @@
           noResults.style.display = "none";
 
           data.forEach((item, index) => {
-            const status = getStatus(item.I, item.J);
+            // CORREÇÃO: Passar J (início) e K (término) corretamente para getStatus
+            const status = getStatus(item.J, item.K);
 
             const row = document.createElement("tr");
             row.innerHTML = `
@@ -1556,7 +1548,7 @@
                             <td>${item.A || "-"}</td>
                             <td>${item.B || "-"}</td>
                             <td>${item.D || "-"}</td>
-                            <td>${item.E || "-"}</td>
+                            <td>${item.F || "-"}</td>
                             <td class="activity-cell" id="activity-cell-${index}">
                                 <div class="activity-text" id="activity-text-${index}" onclick="editActivity(${index}, '${
               item.id
@@ -1572,9 +1564,9 @@
                                     <i class="fas fa-edit"></i>
                                 </button>
                             </td>
-                            <td class="criterio-cell">${item.F || "-"}</td>
-                            <td class="date-cell">${formatDate(item.I)}</td>
+                            <td class="criterio-cell">${item.G || "-"}</td>
                             <td class="date-cell">${formatDate(item.J)}</td>
+                            <td class="date-cell">${formatDate(item.K)}</td>
                             <td><span class="status-badge status-${
                               status.status
                             }">${status.text}</span></td>
@@ -1601,7 +1593,6 @@
 
         // Aplicar filtros
         function applyFilters() {
-          // Verificar se os dados já foram carregados
           if (obrasData.length === 0) return;
 
           const dateFilter = document.getElementById("date-filter").value;
@@ -1617,27 +1608,24 @@
 
           let filteredData = obrasData;
 
-          // Filtrar por supervisor
           if (supervisorFilter !== "all") {
             filteredData = filteredData.filter(
               (item) => item.B === supervisorFilter
             );
           }
 
-          // Filtrar por município
           if (municipioFilter !== "all") {
             filteredData = filteredData.filter(
-              (item) => item.E === municipioFilter
+              (item) => item.F === municipioFilter
             );
           }
-          // Filtrar por Encarregado
+
           if (encarregadoFilter !== "all") {
             filteredData = filteredData.filter(
               (item) => item.A === encarregadoFilter
             );
           }
 
-          // Filtrar por texto de pesquisa
           if (searchText) {
             filteredData = filteredData.filter((item) =>
               Object.values(item).some(
@@ -1647,39 +1635,33 @@
             );
           }
 
-          // Filtrar por data
           if (dateFilter !== "all") {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
             filteredData = filteredData.filter((item) => {
-              if (!item.I || !item.J) return false;
+              if (!item.J || !item.K) return false;
 
-              const startDate = parseDate(item.I);
-              const endDate = parseDate(item.J);
+              const startDate = parseDate(item.J);
+              const endDate = parseDate(item.K);
 
               if (!startDate || !endDate) return false;
 
-              // Resetar horas para comparar apenas as datas
               startDate.setHours(0, 0, 0, 0);
               endDate.setHours(0, 0, 0, 0);
 
               switch (dateFilter) {
                 case "today":
-                  // Obra que está acontecendo hoje (início <= hoje <= término)
                   return startDate <= today && endDate >= today;
                 case "tomorrow":
-                  // Obra que acontecerá amanhã (início <= amanhã <= término)
                   const tomorrow = new Date(today);
                   tomorrow.setDate(tomorrow.getDate() + 1);
                   return startDate <= tomorrow && endDate >= tomorrow;
                 case "week":
-                  // Obra que acontecerá nos próximos 7 dias
                   const nextWeek = new Date(today);
                   nextWeek.setDate(nextWeek.getDate() + 7);
                   return startDate <= nextWeek && endDate >= today;
                 case "month":
-                  // Obra que acontecerá nos próximos 30 dias
                   const nextMonth = new Date(today);
                   nextMonth.setDate(nextMonth.getDate() + 30);
                   return startDate <= nextMonth && endDate >= today;
@@ -1691,6 +1673,7 @@
 
           renderTable(filteredData);
         }
+
         function toggleSidebar() {
           const sidebar = document.getElementById("sidebar");
           const toggleIcon = document.querySelector(".sidebar-toggle i");
@@ -1705,7 +1688,6 @@
             toggleIcon.classList.add("fa-chevron-left");
           }
 
-          // Salvar estado no localStorage
           localStorage.setItem(
             "sidebarCollapsed",
             sidebar.classList.contains("collapsed")
@@ -1728,14 +1710,16 @@
               .classList.add("fa-chevron-right");
           }
 
-          // Adicionar evento de clique ao botão de toggle
           document
             .getElementById("sidebar-toggle")
             .addEventListener("click", toggleSidebar);
+
+          // Carregar dados após o DOM estar pronto
+          loadData();
         });
+
         // Exportar tabela para PNG ou JPEG
         function exportTable(format) {
-          // Primeiro, remover todos os botões de edição e datas da visualização atual
           document.querySelectorAll(".activity-edit-btn").forEach((btn) => {
             btn.style.display = "none";
           });
@@ -1744,7 +1728,6 @@
             cell.style.display = "none";
           });
 
-          // Ocultar cabeçalhos das colunas de data
           const tableHeaders = document.querySelectorAll("th");
           tableHeaders.forEach((header, index) => {
             if (
@@ -1756,22 +1739,18 @@
             }
           });
 
-          // Criar um elemento temporário para exportação
           const exportElement = document.createElement("div");
           exportElement.style.backgroundColor = "#0E1117";
           exportElement.style.padding = "20px";
           exportElement.style.borderRadius = "10px";
 
-          // Clonar o header
           const headerClone = document.querySelector("header").cloneNode(true);
           exportElement.appendChild(headerClone);
 
-          // Clonar a tabela
           const tableClone = document
             .getElementById("table-to-export")
             .cloneNode(true);
 
-          // Remover botões de edição e datas do clone também
           tableClone.querySelectorAll(".activity-edit-btn").forEach((btn) => {
             btn.style.display = "none";
           });
@@ -1779,16 +1758,16 @@
           tableClone.querySelectorAll(".date-cell").forEach((cell) => {
             cell.style.display = "none";
           });
+
           tableClone.querySelectorAll("td:nth-child(6)").forEach((cell) => {
-            const atividadeDiv = cell.querySelector(".atividade-text");
+            const atividadeDiv = cell.querySelector(".activity-text");
             if (atividadeDiv) {
               atividadeDiv.textContent = atividadeDiv.textContent.toUpperCase();
             } else {
-              // Se não encontrar a classe específica, converte todo o conteúdo da célula
               cell.textContent = cell.textContent.toUpperCase();
             }
           });
-          // Ocultar cabeçalhos das colunas de data no clone
+
           tableClone.querySelectorAll("th").forEach((header, index) => {
             if (
               header.textContent === "Início" ||
@@ -1798,6 +1777,8 @@
               header.style.display = "none";
             }
           });
+
+          exportElement.appendChild(tableClone);
 
           // Ocultar coluna de ações nas células
           tableClone.querySelectorAll("td:nth-child(11)").forEach((cell) => {
