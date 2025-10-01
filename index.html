@@ -188,7 +188,7 @@
 
       .container {
         max-width: 1400px;
-        margin: 0 auto;
+        margin-left: 125px;
         zoom: 80%;
       }
 
@@ -783,46 +783,13 @@
         <i class="fas fa-bars"></i>
       </button>
 
-      <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-          <img src="NorteTech.png" alt="Norte Tech Logo" class="sidebar-logo" />
-          <div class="sidebar-title">Painel de Controle</div>
-          <button class="sidebar-toggle" id="sidebar-toggle">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-        </div>
-
-        <nav class="sidebar-menu">
-          <a href="#" class="menu-item active">
-            <i class="fas fa-home"></i>
-            <span class="menu-text">Visão Geral</span>
-          </a>
-          <a href="#" class="menu-item">
-            <i class="fas fa-hard-hat"></i>
-            <span class="menu-text">Programação</span>
-          </a>
-          <a
-            href="https://dashboarddeobrasnortetechba.streamlit.app/"
-            target="_blank"
-            class="menu-item"
-          >
-            <i class="fas fa-chart-line"></i>
-            <span class="menu-text">Dashboard</span>
-          </a>
-        </nav>
-        <div class="sidebar-footer">
-          João Victor Santos &copy; 2025<br />
-          Versão 0.3.0
-        </div>
-      </aside>
-
       <main class="main-content">
         <div class="container">
           <header>
             <div class="header-content">
               <h1><i class="fas fa-hard-hat"></i> PROGRAMAÇÃO DE OBRAS</h1>
               <p class="subtitle">
-                Controle e acompanhamento de Obras - Setembro
+                Controle e acompanhamento de Obras - Outubro
               </p>
               <div class="current-date" id="current-date">Data de hoje :</div>
             </div>
@@ -1026,7 +993,7 @@
           </section>
         </div>
         <!-- SEÇÃO DO QUADRO DE ENERGIZAÇÃO -->
-        <section class="energizacao-section" id="quadro-energizacao">
+        <!--   <section class="energizacao-section" id="quadro-energizacao"> -!>
           <div class="section-header">
             <h2><i class="fas fa-bolt"></i> QUADRO DE ENERGIZAÇÃO</h2>
             <img
@@ -1040,7 +1007,7 @@
             <label for="obra-select">Selecione a obra energizada: </label>
             <select id="obra-select">
               <option value="">Selecione uma obra</option>
-              <!-- As opções serão preenchidas via JavaScript -->
+               As opções serão preenchidas via JavaScript 
             </select>
           </div>
 
@@ -1189,7 +1156,7 @@
                 </div>
               </div>
 
-              <!-- OBSERVAÇÃO - Agora na parte inferior, separada -->
+               OBSERVAÇÃO - Agora na parte inferior, separada 
               <div class="observacao-container">
                 <label for="energizacao-obs">OBSERVAÇÕES:</label>
                 <textarea
@@ -1211,7 +1178,7 @@
               </button>
             </div>
           </div>
-        </section>
+        </section> -->
         <footer>
           <p>joaovctdev &copy; 2025 - Sistema de Gerenciamento de Obras</p>
         </footer>
@@ -1242,13 +1209,18 @@
 
         // Calcular status com base nas datas - FUNÇÃO CORRIGIDA
         function getStatus(startDate, endDate) {
-          if (!startDate || !endDate)
+          // Se não tem uma das datas, retorna Pendente
+          if (!startDate || !endDate) {
             return { status: "pending", text: "Pendente" };
+          }
 
           const start = parseDate(startDate);
           const end = parseDate(endDate);
 
-          if (!start || !end) return { status: "pending", text: "Pendente" };
+          // Se as datas são inválidas, retorna Pendente
+          if (!start || !end) {
+            return { status: "pending", text: "Pendente" };
+          }
 
           // Resetar horas para comparar apenas as datas
           const today = new Date();
@@ -1256,12 +1228,17 @@
           start.setHours(0, 0, 0, 0);
           end.setHours(0, 0, 0, 0);
 
+          // CORREÇÃO DA LÓGICA:
+          // - Se hoje é ANTES da data de início: Programada
+          // - Se hoje é DEPOIS da data de término: Concluída
+          // - Se hoje está ENTRE início e término: Em Andamento
+
           if (today < start) {
             return { status: "pending", text: "Programada" };
-          } else if (today >= start && today <= end) {
-            return { status: "active", text: "Em Andamento" };
-          } else {
+          } else if (today > end) {
             return { status: "completed", text: "Concluída" };
+          } else {
+            return { status: "active", text: "Em Andamento" };
           }
         }
 
@@ -1327,7 +1304,7 @@
             ...new Set(data.map((item) => item.B).filter(Boolean)),
           ];
           const municipios = [
-            ...new Set(data.map((item) => item.F).filter(Boolean)),
+            ...new Set(data.map((item) => item.E).filter(Boolean)),
           ];
           const encarregados = [
             ...new Set(data.map((item) => item.A).filter(Boolean)),
@@ -1364,12 +1341,12 @@
           if (obraExistente) {
             document.getElementById("new-titulo").value = obraExistente.D || "";
             document.getElementById("new-municipio").value =
-              obraExistente.F || "";
+              obraExistente.E || "";
             document.getElementById("new-criterio").value =
-              obraExistente.G || "";
+              obraExistente.F || "";
 
-            if (obraExistente.J) {
-              const [day, month, year] = obraExistente.J.split("/");
+            if (obraExistente.I) {
+              const [day, month, year] = obraExistente.I.split("/");
               document.getElementById(
                 "new-inicio"
               ).value = `${year}-${month.padStart(2, "0")}-${day.padStart(
@@ -1378,8 +1355,8 @@
               )}`;
             }
 
-            if (obraExistente.K) {
-              const [day, month, year] = obraExistente.K.split("/");
+            if (obraExistente.J) {
+              const [day, month, year] = obraExistente.J.split("/");
               document.getElementById(
                 "new-termino"
               ).value = `${year}-${month.padStart(2, "0")}-${day.padStart(
@@ -1420,11 +1397,11 @@
             A: encarregado,
             B: supervisor,
             D: titulo,
-            F: municipio,
-            G: criterio,
+            E: municipio,
+            F: criterio,
             atividade: atividade,
-            J: inicioFormatado, // Data de início
-            K: terminoFormatado, // Data de término
+            I: inicioFormatado, // Data de início
+            J: terminoFormatado, // Data de término
           };
 
           obrasData.push(novaObra);
@@ -1539,8 +1516,8 @@
           noResults.style.display = "none";
 
           data.forEach((item, index) => {
-            // CORREÇÃO: Passar J (início) e K (término) corretamente para getStatus
-            const status = getStatus(item.J, item.K);
+            // CORREÇÃO: Passar I (início) e J (término) corretamente para getStatus
+            const status = getStatus(item.I, item.J);
 
             const row = document.createElement("tr");
             row.innerHTML = `
@@ -1548,7 +1525,7 @@
                             <td>${item.A || "-"}</td>
                             <td>${item.B || "-"}</td>
                             <td>${item.D || "-"}</td>
-                            <td>${item.F || "-"}</td>
+                            <td>${item.E || "-"}</td>
                             <td class="activity-cell" id="activity-cell-${index}">
                                 <div class="activity-text" id="activity-text-${index}" onclick="editActivity(${index}, '${
               item.id
@@ -1564,9 +1541,9 @@
                                     <i class="fas fa-edit"></i>
                                 </button>
                             </td>
-                            <td class="criterio-cell">${item.G || "-"}</td>
+                            <td class="criterio-cell">${item.F || "-"}</td>
+                            <td class="date-cell">${formatDate(item.I)}</td>
                             <td class="date-cell">${formatDate(item.J)}</td>
-                            <td class="date-cell">${formatDate(item.K)}</td>
                             <td><span class="status-badge status-${
                               status.status
                             }">${status.text}</span></td>
@@ -1616,7 +1593,7 @@
 
           if (municipioFilter !== "all") {
             filteredData = filteredData.filter(
-              (item) => item.F === municipioFilter
+              (item) => item.E === municipioFilter
             );
           }
 
@@ -1640,10 +1617,10 @@
             today.setHours(0, 0, 0, 0);
 
             filteredData = filteredData.filter((item) => {
-              if (!item.J || !item.K) return false;
+              if (!item.I || !item.J) return false;
 
-              const startDate = parseDate(item.J);
-              const endDate = parseDate(item.K);
+              const startDate = parseDate(item.I);
+              const endDate = parseDate(item.J);
 
               if (!startDate || !endDate) return false;
 
@@ -1834,6 +1811,7 @@
             });
           });
         }
+
         function exportTableWithDates(format) {
           // Primeiro, remover apenas os botões de edição da visualização atual
           document.querySelectorAll(".activity-edit-btn").forEach((btn) => {
@@ -1874,15 +1852,16 @@
               header.style.display = "none";
             }
           });
+
           tableClone.querySelectorAll("td:nth-child(6)").forEach((cell) => {
-            const atividadeDiv = cell.querySelector(".atividade-text");
+            const atividadeDiv = cell.querySelector(".activity-text");
             if (atividadeDiv) {
               atividadeDiv.textContent = atividadeDiv.textContent.toUpperCase();
             } else {
-              // Se não encontrar a classe específica, converte todo o conteúdo da célula
               cell.textContent = cell.textContent.toUpperCase();
             }
           });
+
           // Ocultar coluna de ações nas células (ajustado para a 11ª coluna)
           tableClone.querySelectorAll("td:nth-child(11)").forEach((cell) => {
             cell.style.display = "none";
@@ -1929,6 +1908,7 @@
             });
           });
         }
+
         // Inicializar a aplicação
         function init() {
           // Atualizar data atual no header
@@ -1988,6 +1968,7 @@
 
         // Iniciar quando o documento estiver carregado
         document.addEventListener("DOMContentLoaded", init);
+
         // Função para exportar apenas o Quadro de Energização
         function exportEnergizacao() {
           const originalSection = document.getElementById("quadro-energizacao");
