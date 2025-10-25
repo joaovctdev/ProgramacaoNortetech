@@ -72,7 +72,7 @@
    "P": ""
  },
  {
-   "A": "VANILSON",
+   "A": "VANILSON, ALAN",
    "B": "DJALMA",
    "C": "B-1015407",
    "D": "AC-CIND-POV REG DE LAGOA CLARA-RURAL",
@@ -134,8 +134,8 @@
    "F": "QLP",
    "G": "INTERCALA POSTE 11/600 N1 EM REDE 3X04 13,8Kv - CAVA COM RETRO",
    "H": "3",
-   "I": "09/10/2025",
-   "J": "09/10/2025",
+   "I": "25/10/2025",
+   "J": "25/10/2025",
    "K": "ATRASADA",
    "L": "LV",
    "M": "",
@@ -204,11 +204,11 @@
    "D": "ER-CIND-FAZ-PONTO BONITO-RURAL-CENTRAL",
    "E": "CENTRAL",
    "F": "JUDICIAL",
-   "G": "ENERGIZADA",
+   "G": "",
    "H": "13",
    "I": "13/10/2025",
-   "J": "23/10/2025",
-   "K": "ENERGIZADA",
+   "J": "25/10/2025",
+   "K": "ATRASADA",
    "L": "LV",
    "M": "",
    "N": "8",
@@ -495,7 +495,7 @@
    "G": "DP  30/10 - N3 PARA B4 EM POSTE 11/600 EM REDE 2X04  13,8Kv",
    "H": "49",
    "I": "02/10/2025",
-   "J": "24/10/2025",
+   "J": "25/10/2025",
    "K": "ATRASADA",
    "L": "LV",
    "M": "",
@@ -594,7 +594,7 @@
    "P": ""
  },
  {
-   "A": "ESMERALDO",
+   "A": "REVERTON, ESMERALDO",
    "B": "RENATO",
    "C": "B-1210631",
    "D": "RR-CIND-POV-DE SÃO DOMINGOS-RURAL",
@@ -864,7 +864,7 @@
    "P": ""
  },
  {
-   "A": "ENES, REVERTON, FELIPE, ALAN",
+   "A": "ENES",
    "B": "RENATO",
    "C": "B-1227686",
    "D": "RR-CIND-POV-CURRALINHO-RURAL",
