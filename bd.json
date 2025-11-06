@@ -60,7 +60,7 @@
    "G": "ENERGIZADA",
    "H": "8",
    "I": "05/11/2025",
-   "J": "11/11/2025",
+   "J": "04/11/2025",
    "K": "ATUANDO",
    "L": "",
    "M": "",
@@ -212,7 +212,7 @@
    "F": "QLP",
    "G": "DP 20/11  - ADF EM REDE 3X04 13,8Kv",
    "H": "15",
-   "I": "04/11/2025",
+   "I": "07/11/2025",
    "J": "20/11/2025",
    "K": "ATUANDO",
    "L": "DP/LV",
@@ -229,7 +229,7 @@
    "F": "QLP",
    "G": "N3 PARA N4 EM POSTE EXISTENTE EM REDE 2X04 13,8Kv",
    "H": "17",
-   "I": "12/11/2025",
+   "I": "06/11/2025",
    "J": "14/11/2025",
    "K": "PROGRAMADA",
    "L": "LV",
@@ -281,7 +281,7 @@
    "G": "ENERGIZADA",
    "H": "6",
    "I": "04/11/2025",
-   "J": "06/11/2025",
+   "J": "04/11/2025",
    "K": "ATRASADA",
    "L": "",
    "M": "",
@@ -289,7 +289,7 @@
    "O": "6"
  },
  {
-   "A": "FELIPE",
+   "A": "FELIPE , ENES",
    "B": "RENATO",
    "C": "B-1228949",
    "D": "ER-CIND-POV-SAO JOAO-DO ZE DA PRETA",
@@ -297,7 +297,7 @@
    "F": "QLP",
    "G": "N3 PARA N3 EM REDE 2X04 13,8Kv",
    "H": "18",
-   "I": "07/11/2025",
+   "I": "06/11/2025",
    "J": "14/11/2025",
    "K": "PROGRAMADA",
    "L": "LV",
@@ -306,7 +306,7 @@
    "O": "0"
  },
  {
-   "A": "MARCOS PAULO",
+   "A": "MARCOS PAULO, IRISMAR",
    "B": "HIAGO",
    "C": "B-1156355",
    "D": "MP CIND POV DE CEDRO RURAL",
@@ -629,7 +629,7 @@
    "O": "5"
  },
  {
-   "A": "REVERTON",
+   "A": "REVERTON, ELIEZER",
    "B": "RENATO",
    "C": "B-1230240",
    "D": "RR-CIND-POV-TABOA DO MOINHO-RURAL",
